@@ -1,12 +1,13 @@
 package app.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Junction {
+@Builder
+public class ProceedableJunction {
     private long junctionId;
-    private double x;
-    private double y;
+    private Street street;
 }
