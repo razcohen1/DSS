@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static app.algorithm.InverseStreetFinder.findInverseStreet;
+
 @Getter
 @Setter
 public class AlgorithmImpl implements Algorithm {
@@ -41,7 +43,11 @@ public class AlgorithmImpl implements Algorithm {
             }
             bestCarsPaths.add(bestStreetsPath);
             traversedAlreadyStreets.addAll(bestStreetsPath);
+            bestStreetsPath.forEach(street -> {
+                if(!street.isOneway())
+                    traversedAlreadyStreets.add(findInverseStreet(street,problemInput.getJunctionToProceedableJunctions()));
+            });
         }
-        return null;
+        return ProblemOutput.builder().bestCarsPaths(bestCarsPaths).build();
     }
 }

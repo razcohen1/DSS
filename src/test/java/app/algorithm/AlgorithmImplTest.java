@@ -13,6 +13,7 @@ public class AlgorithmImplTest {
     @Test
     public void test() {
         ProblemInput problemInput = jsonReader.read("C:\\Users\\Raz\\Desktop\\DssProject\\DSS Project\\Input examples\\input_example_3.json", ProblemInput.class);
+        problemInput.setJunctionToProceedableJunctions(JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap(problemInput.getJunctionsList(),problemInput.getStreetsList()));
         algorithm.run(problemInput);
     }
 }

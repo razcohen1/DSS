@@ -11,9 +11,11 @@ import org.springframework.util.MultiValueMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import static app.algorithm.InverseStreetFinder.findInverseStreet;
+
 public class AllValidPathsCalculator {
     public List<PathDetails> calculate(ProblemInput problemInput) {
-        MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = createJunctionToProceedableJunctionsMap(problemInput);
+        MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();
         long initialJunctionId = problemInput.getMissionProperties().getInitialJunctionId();
         double timeAllowedForCarsItinerariesInSeconds = problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds();
         List<PathDetails> allFinalPaths = new ArrayList<>();
@@ -22,10 +24,9 @@ public class AllValidPathsCalculator {
         return allFinalPaths;
     }
 
-    //todo: traveled already on streets instead of junctions (dealt with)
-    //todo: duplicate paths when multiple neighbors exceeding time limit (dealt with)
     //todo: allow a limited amount of travels in the same street instead of only 1
-    //todo: save all streets in path to evaluate the performance
+    //todo: in dfs instead of contains use a boolean array or a map
+    //todo: make sure im covering all the possible paths
     private void recursia(long currentJunction, double timePassed, double timeAllowed, List<Long> path,
                           List<Street> streets, List<PathDetails> allFinalPaths, List<Street> traveledAlready, MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
         path.add(currentJunction);
@@ -36,11 +37,13 @@ public class AllValidPathsCalculator {
                     exceededTimeLimit = true;
                 } else {
                     traveledAlready.add(proceedableJunction.getStreet());
-                    ArrayList<Street> streetsWithTheNextJunction = new ArrayList<>(streets);
-                    streetsWithTheNextJunction.add(proceedableJunction.getStreet());
+                    if(!proceedableJunction.getStreet().isOneway())
+                        traveledAlready.add(findInverseStreet(proceedableJunction.getStreet(),junctionToProceedableJunctions));
+                    ArrayList<Street> streetsWithTheNextStreet = new ArrayList<>(streets);
+                    streetsWithTheNextStreet.add(proceedableJunction.getStreet());
                     recursia(proceedableJunction.getJunctionId(),
                             timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed,
-                            new ArrayList<>(path), streetsWithTheNextJunction, allFinalPaths, traveledAlready, junctionToProceedableJunctions);
+                            new ArrayList<>(path), streetsWithTheNextStreet, allFinalPaths, traveledAlready, junctionToProceedableJunctions);
                 }
             }
         }
