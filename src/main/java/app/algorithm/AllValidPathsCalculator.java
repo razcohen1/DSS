@@ -1,7 +1,10 @@
 package app.algorithm;
 
 
-import app.model.*;
+import app.model.PathDetails;
+import app.model.ProblemInput;
+import app.model.ProceedableJunction;
+import app.model.Street;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
@@ -9,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AllValidPathsCalculator {
-    public List<Path> calculate(ProblemInput problemInput) {
+    public List<PathDetails> calculate(ProblemInput problemInput) {
         MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = createJunctionToProceedableJunctionsMap(problemInput);
         long initialJunctionId = problemInput.getMissionProperties().getInitialJunctionId();
         double timeAllowedForCarsItinerariesInSeconds = problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds();
-        ArrayList<PathDetails> allFinalPaths = new ArrayList<>();
+        List<PathDetails> allFinalPaths = new ArrayList<>();
         recursia(initialJunctionId, 0, timeAllowedForCarsItinerariesInSeconds,
-                new ArrayList<>(), allFinalPaths, new ArrayList<>(), junctionToProceedableJunctions);
-        return null;
+                new ArrayList<>(), new ArrayList<>(), allFinalPaths, new ArrayList<>(), junctionToProceedableJunctions);
+        return allFinalPaths;
     }
 
     //todo: traveled already on streets instead of junctions (dealt with)
@@ -24,7 +27,7 @@ public class AllValidPathsCalculator {
     //todo: allow a limited amount of travels in the same street instead of only 1
     //todo: save all streets in path to evaluate the performance
     private void recursia(long currentJunction, double timePassed, double timeAllowed, List<Long> path,
-                          List<PathDetails> allFinalPaths, List<Street> traveledAlready, MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
+                          List<Street> streets, List<PathDetails> allFinalPaths, List<Street> traveledAlready, MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
         path.add(currentJunction);
         boolean exceededTimeLimit = false;
         for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
@@ -33,14 +36,16 @@ public class AllValidPathsCalculator {
                     exceededTimeLimit = true;
                 } else {
                     traveledAlready.add(proceedableJunction.getStreet());
+                    ArrayList<Street> streetsWithTheNextJunction = new ArrayList<>(streets);
+                    streetsWithTheNextJunction.add(proceedableJunction.getStreet());
                     recursia(proceedableJunction.getJunctionId(),
                             timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed,
-                            new ArrayList<>(path), allFinalPaths, traveledAlready, junctionToProceedableJunctions);
+                            new ArrayList<>(path), streetsWithTheNextJunction, allFinalPaths, traveledAlready, junctionToProceedableJunctions);
                 }
             }
         }
-        if(exceededTimeLimit)
-            allFinalPaths.add(PathDetails.builder().junctions(path).time(timePassed).build());
+        if (exceededTimeLimit)
+            allFinalPaths.add(PathDetails.builder().junctions(path).streets(streets).time(timePassed).build());
     }
 
     private MultiValueMap<Long, ProceedableJunction> createJunctionToProceedableJunctionsMap(ProblemInput problemInput) {

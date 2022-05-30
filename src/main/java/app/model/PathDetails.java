@@ -11,5 +11,7 @@ import java.util.List;
 @Builder
 public class PathDetails {
     List<Long> junctions;
+    List<Street> streets;
     double time;
+    double score;
 }

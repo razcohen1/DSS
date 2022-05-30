@@ -10,7 +10,7 @@ public class AllValidPathsCalculatorTest {
 
     @Test
     public void name() {
-        ProblemInput problemInput = jsonReader.read("C:\\Users\\Raz\\Desktop\\DssProject\\DSS Project\\Input examples\\input_example_1.json", ProblemInput.class);
+        ProblemInput problemInput = jsonReader.read("C:\\Users\\Raz\\Desktop\\DssProject\\DSS Project\\Input examples\\input_example_3.json", ProblemInput.class);
         calculator.calculate(problemInput);
     }
 }
