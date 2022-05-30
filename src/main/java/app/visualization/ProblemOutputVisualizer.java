@@ -13,7 +13,6 @@ import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
 import edu.uci.ics.jung.visualization.renderers.DefaultEdgeLabelRenderer;
-import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
 import org.apache.commons.collections15.Transformer;
 
@@ -25,17 +24,17 @@ import java.util.Map;
 import java.util.Random;
 
 public class ProblemOutputVisualizer {
-    private static AlgorithmImpl algorithm = new AlgorithmImpl();
-    private static JsonReader jsonReader = new JsonReader();
+//    private static AlgorithmImpl algorithm = new AlgorithmImpl();
+//    private static JsonReader jsonReader = new JsonReader();
 
-    public static void main(String[] args) {
-        ProblemInput problemInput = jsonReader.read("C:\\Users\\Raz\\Desktop\\DssProject\\DSS Project\\Input examples\\input_example_1.json", ProblemInput.class);
-        problemInput.setJunctionToProceedableJunctions(JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap(problemInput.getJunctionsList(), problemInput.getStreetsList()));
-        ProblemOutput problemOutput = algorithm.run(problemInput);
-        createAndShowGUI(problemInput, problemOutput);
-    }
+//    public static void main(String[] args) {
+//        ProblemInput problemInput = jsonReader.read("C:\\Users\\Raz\\Desktop\\DssProject\\DSS Project\\Input examples\\input_example_1.json", ProblemInput.class);
+//        problemInput.setJunctionToProceedableJunctions(JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap(problemInput.getJunctionsList(), problemInput.getStreetsList()));
+//        ProblemOutput problemOutput = algorithm.run(problemInput);
+//        visualize(problemInput, problemOutput);
+//    }
 
-    private static void createAndShowGUI(ProblemInput problemInput, ProblemOutput problemOutput) {
+    public static void visualize(ProblemInput problemInput, ProblemOutput problemOutput) {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
