@@ -10,8 +10,12 @@ import edu.uci.ics.jung.algorithms.layout.ISOMLayout;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
+import edu.uci.ics.jung.visualization.renderers.DefaultEdgeLabelRenderer;
+import edu.uci.ics.jung.visualization.renderers.DefaultVertexLabelRenderer;
 import edu.uci.ics.jung.visualization.renderers.Renderer;
+import org.apache.commons.collections15.Transformer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,8 +42,8 @@ public class ProblemOutputVisualizer {
         Graph<Long, Street> g = convertToVisualizableGraph(problemInput);
 //        Graph<String, String> g = createGraph();
 
-        Dimension frameSize = new Dimension(1100, 1100);
-        Dimension visualizationSize = new Dimension(1000, 1000);
+        Dimension frameSize = new Dimension(1920, 1080);
+        Dimension visualizationSize = new Dimension(1900, 1000);
         Renderer<Long, Street> renderer = new BasicRenderer<Long, Street>();
         VisualizationViewer<Long, Street> vv =
                 new VisualizationViewer<Long, Street>(
@@ -49,13 +53,36 @@ public class ProblemOutputVisualizer {
 //        vv.setGraphMouse(graphMouse);
 
 //        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<>());
-//        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller<>());
+        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller<>());
         vv.getRenderContext().setVertexFillPaintTransformer(aLong -> {
             if (aLong.equals(problemInput.getMissionProperties().getInitialJunctionId()))
                 return Color.GREEN;
             else
-                return Color.BLACK;
+                return Color.CYAN;
         });
+        vv.getRenderContext().setEdgeFontTransformer(new Transformer<Street, Font>(){
+            @Override
+            public Font transform(Street customObject) {
+                return new Font("Helvetica", Font.BOLD, 12);
+            }
+        });
+
+        final Color edgeLabelColor = Color.BLACK;
+        DefaultEdgeLabelRenderer edgeLabelRenderer =
+                new DefaultEdgeLabelRenderer(edgeLabelColor)
+                {
+                    @Override
+                    public <V> Component getEdgeLabelRendererComponent(
+                            JComponent vv, Object value, Font font,
+                            boolean isSelected, V vertex)
+                    {
+                        super.getEdgeLabelRendererComponent(
+                                vv, value, font, isSelected, vertex);
+                        setForeground(edgeLabelColor);
+                        return this;
+                    }
+                };
+        vv.getRenderContext().setEdgeLabelRenderer(edgeLabelRenderer);
 
         Map<Integer, Color> carIndexToColor = new HashMap<>();
         for (int carIndex = 0; carIndex < problemOutput.getBestCarsPaths().size(); carIndex++) {
