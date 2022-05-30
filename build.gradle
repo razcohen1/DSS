@@ -14,6 +14,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'net.sf.jung:jung-graph-impl:2.0.1'
+    implementation 'net.sf.jung:jung-api:2.0.1'
+    implementation 'net.sf.jung:jung-visualization:2.0.1'
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testCompileOnly 'org.projectlombok:lombok:1.18.24'
