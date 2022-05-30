@@ -28,13 +28,14 @@ public class AllValidPathsCalculator {
     //todo: in dfs instead of contains use a boolean array or a map
     //todo: make sure im covering all the possible paths
     private void recursia(long currentJunction, double timePassed, double timeAllowed, List<Long> path,
-                          List<Street> streets, List<PathDetails> allFinalPaths, List<Street> traveledAlready, MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
+                          List<Street> streets, List<PathDetails> allFinalPaths, List<Street> traveledAlready,
+                          MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
         path.add(currentJunction);
-        boolean exceededTimeLimit = false;
+        boolean isFinalPath = false;
         for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
             if (!traveledAlready.contains(proceedableJunction.getStreet())) {
                 if (timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet() > timeAllowed) {
-                    exceededTimeLimit = true;
+                    isFinalPath = true;
                 } else {
                     traveledAlready.add(proceedableJunction.getStreet());
                     if(!proceedableJunction.getStreet().isOneway())
@@ -43,11 +44,13 @@ public class AllValidPathsCalculator {
                     streetsWithTheNextStreet.add(proceedableJunction.getStreet());
                     recursia(proceedableJunction.getJunctionId(),
                             timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed,
-                            new ArrayList<>(path), streetsWithTheNextStreet, allFinalPaths, traveledAlready, junctionToProceedableJunctions);
+                            new ArrayList<>(path), streetsWithTheNextStreet, allFinalPaths, new ArrayList<>(traveledAlready), junctionToProceedableJunctions);
                 }
+            } else {
+                isFinalPath = true;
             }
         }
-        if (exceededTimeLimit)
+        if (isFinalPath)
             allFinalPaths.add(PathDetails.builder().junctions(path).streets(streets).time(timePassed).build());
     }
 
