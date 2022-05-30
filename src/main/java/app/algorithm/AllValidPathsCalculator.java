@@ -27,30 +27,29 @@ public class AllValidPathsCalculator {
     //todo: allow a limited amount of travels in the same street instead of only 1
     //todo: in dfs instead of contains use a boolean array or a map
     //todo: make sure im covering all the possible paths
+    //todo: deal with the case where a path has no neighbor streets that it hasnt traveled through already (currently drops the path)
     private void recursia(long currentJunction, double timePassed, double timeAllowed, List<Long> path,
                           List<Street> streets, List<PathDetails> allFinalPaths, List<Street> traveledAlready,
                           MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
         path.add(currentJunction);
-        boolean isFinalPath = false;
+        boolean isTimeExceeded = false;
         for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
             if (!traveledAlready.contains(proceedableJunction.getStreet())) {
                 if (timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet() > timeAllowed) {
-                    isFinalPath = true;
+                    isTimeExceeded = true;
                 } else {
                     traveledAlready.add(proceedableJunction.getStreet());
-                    if(!proceedableJunction.getStreet().isOneway())
-                        traveledAlready.add(findInverseStreet(proceedableJunction.getStreet(),junctionToProceedableJunctions));
+//                    if(!proceedableJunction.getStreet().isOneway())
+//                        traveledAlready.add(findInverseStreet(proceedableJunction.getStreet(),junctionToProceedableJunctions));
                     ArrayList<Street> streetsWithTheNextStreet = new ArrayList<>(streets);
                     streetsWithTheNextStreet.add(proceedableJunction.getStreet());
                     recursia(proceedableJunction.getJunctionId(),
                             timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed,
                             new ArrayList<>(path), streetsWithTheNextStreet, allFinalPaths, new ArrayList<>(traveledAlready), junctionToProceedableJunctions);
                 }
-            } else {
-                isFinalPath = true;
             }
         }
-        if (isFinalPath)
+        if (isTimeExceeded)
             allFinalPaths.add(PathDetails.builder().junctions(path).streets(streets).time(timePassed).build());
     }
 
