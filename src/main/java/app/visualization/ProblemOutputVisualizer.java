@@ -5,15 +5,20 @@ import app.algorithm.JunctionToProceedableJunctionsCreator;
 import app.files.JsonReader;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
+import app.model.Street;
 import edu.uci.ics.jung.algorithms.layout.ISOMLayout;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
+import edu.uci.ics.jung.visualization.renderers.BasicRenderer;
+import edu.uci.ics.jung.visualization.renderers.Renderer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
 public class ProblemOutputVisualizer {
     private static AlgorithmImpl algorithm = new AlgorithmImpl();
@@ -30,18 +35,49 @@ public class ProblemOutputVisualizer {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Graph<Long, String> g = convertToVisualizableGraph(problemInput);
+        Graph<Long, Street> g = convertToVisualizableGraph(problemInput);
 //        Graph<String, String> g = createGraph();
 
         Dimension frameSize = new Dimension(1100, 1100);
         Dimension visualizationSize = new Dimension(1000, 1000);
-        VisualizationViewer<Long, String> vv =
-                new VisualizationViewer<Long, String>(
+        Renderer<Long, Street> renderer = new BasicRenderer<Long, Street>();
+        VisualizationViewer<Long, Street> vv =
+                new VisualizationViewer<Long, Street>(
                         new ISOMLayout<>(g), visualizationSize);
 //        DefaultModalGraphMouse<String, Double> graphMouse =
 //                new DefaultModalGraphMouse<String, Double>();
 //        vv.setGraphMouse(graphMouse);
 
+//        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<>());
+//        vv.getRenderContext().setEdgeLabelTransformer(new ToStringLabeller<>());
+        vv.getRenderContext().setVertexFillPaintTransformer(aLong -> {
+            if (aLong.equals(problemInput.getMissionProperties().getInitialJunctionId()))
+                return Color.GREEN;
+            else
+                return Color.BLACK;
+        });
+
+        Map<Integer, Color> carIndexToColor = new HashMap<>();
+        for (int carIndex = 0; carIndex < problemOutput.getBestCarsPaths().size(); carIndex++) {
+            carIndexToColor.put(carIndex, new Color((int) (Math.random() * 0x1000000)));
+        }
+
+        vv.getRenderContext().setEdgeFillPaintTransformer(street -> {
+            List<List<Street>> bestCarsPaths = problemOutput.getBestCarsPaths();
+            for (int carIndex = 0; carIndex < bestCarsPaths.size(); carIndex++) {
+                List<Street> streets = bestCarsPaths.get(carIndex);
+                if (streets.contains(street)) {
+                    return carIndexToColor.get(carIndex);
+                }
+            }
+            return null;
+        });
+//        renderer.setVertexRenderer((rc, layout, aLong) -> rc.setVertexFillPaintTransformer(aLong1 -> {
+//            if(aLong1.equals(problemInput.getMissionProperties().getInitialJunctionId()))
+//                return Color.YELLOW;
+//            else
+//                return Color.BLACK;
+//        }));
 //        improvePerformance(vv);
         f.getContentPane().add(vv);
         f.setSize(frameSize);
@@ -49,11 +85,11 @@ public class ProblemOutputVisualizer {
         f.setVisible(true);
     }
 
-    private static Graph<Long, String> convertToVisualizableGraph(ProblemInput problemInput) {
+    private static Graph<Long, Street> convertToVisualizableGraph(ProblemInput problemInput) {
 
-        Graph<Long, String> g = new DirectedSparseGraph<Long, String>();
+        Graph<Long, Street> g = new DirectedSparseGraph<Long, Street>();
         problemInput.getJunctionsList().forEach(junction -> g.addVertex(junction.getJunctionId()));
-        problemInput.getStreetsList().forEach(street -> g.addEdge(UUID.randomUUID().toString(),
+        problemInput.getStreetsList().forEach(street -> g.addEdge(street,
                 street.getJunctionFromId(),
                 street.getJunctionToId()));
 //        for (int i=0; i<numVertices; i++)
