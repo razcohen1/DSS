@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.util.MultiValueMap;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -17,4 +18,5 @@ public class ProblemInput {
     private List<Junction> junctionsList;
     private List<Street> streetsList;
     private MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions;
+    private Map<Street,Street> streetToInverseStreet;
 }
