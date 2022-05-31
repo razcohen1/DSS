@@ -32,7 +32,7 @@ public class BestPathFinder {
         boolean isTimeExceeded = false;
         double newScore;
         for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
-            if (!traveledAlready.contains(proceedableJunction.getStreet())) {
+            if (!traveledAlready.contains(proceedableJunction.getStreet()) && canPassBestPath(score, timePassed, timeAllowed, bestPath)) {
                 if (timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet() > timeAllowed) {
                     isTimeExceeded = true;
                 } else {
@@ -62,5 +62,9 @@ public class BestPathFinder {
                 bestPath.setTime(timePassed);
             }
         }
+    }
+
+    private boolean canPassBestPath(double score, double timePassed, double timeAllowed, PathDetails bestPath) {
+        return score + (timeAllowed - timePassed) > bestPath.getScore();
     }
 }
