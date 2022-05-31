@@ -32,7 +32,7 @@ public class AlgorithmStreetsZeroing implements Algorithm {
             bestPath.getStreets().forEach(street -> {
                 streetToIsZeroScore.put(street,true);
                 if (!street.isOneway())
-                    streetToIsZeroScore.put(findInverseStreet(street, problemInput.getJunctionToProceedableJunctions()),true);
+                    streetToIsZeroScore.put(problemInput.getStreetToInverseStreet().get(street),true);
             });
 //            traversedAlreadyStreets.addAll(bestPath.getStreets());
 //            bestPath.getStreets().forEach(street -> {

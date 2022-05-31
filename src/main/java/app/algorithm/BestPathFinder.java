@@ -14,6 +14,8 @@ import java.util.Map;
 import static app.algorithm.InverseStreetFinder.findInverseStreet;
 
 public class BestPathFinder {
+    private final double percentOptimizationOverPerformance = 90;
+
     public PathDetails findBestPath(ProblemInput problemInput, List<Street> zeroScoreStreets) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();
@@ -67,6 +69,6 @@ public class BestPathFinder {
     }
 
     private boolean canPassBestPath(double score, double timePassed, double timeAllowed, PathDetails bestPath) {
-        return score + (timeAllowed - timePassed) > bestPath.getScore();
+        return score + (timeAllowed - timePassed) > bestPath.getScore() + 100 * (100-percentOptimizationOverPerformance) /100;
     }
 }
