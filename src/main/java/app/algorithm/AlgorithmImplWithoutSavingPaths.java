@@ -15,7 +15,6 @@ import static app.algorithm.InverseStreetFinder.findInverseStreet;
 @Getter
 @Setter
 public class AlgorithmImplWithoutSavingPaths implements Algorithm {
-    private AllValidPathsCalculator allValidPathsCalculator = new AllValidPathsCalculator();
     private BestPathFinder bestPathFinder = new BestPathFinder();
 
     //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them

@@ -30,6 +30,7 @@ public class BestPathFinder {
                           List<Street> streets, List<Street> traveledAlready, List<Street> zeroScoreStreets,
                           MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions) {
         boolean isTimeExceeded = false;
+        double newScore;
         for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
             if (!traveledAlready.contains(proceedableJunction.getStreet())) {
                 if (timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet() > timeAllowed) {
@@ -40,13 +41,15 @@ public class BestPathFinder {
 //                        traveledAlready.add(findInverseStreet(proceedableJunction.getStreet(),junctionToProceedableJunctions));
                     ArrayList<Street> streetsWithTheNextStreet = new ArrayList<>(streets);
                     streetsWithTheNextStreet.add(proceedableJunction.getStreet());
+                    newScore = score;
                     if (!zeroScoreStreets.contains(proceedableJunction.getStreet()))
-                        score += proceedableJunction.getStreet().getRequiredTimeToFinishStreet();
+                        newScore += proceedableJunction.getStreet().getRequiredTimeToFinishStreet();
                     List<Street> zeroScoreStreetsAfterStreet = new ArrayList<>(zeroScoreStreets);
                     zeroScoreStreetsAfterStreet.add(proceedableJunction.getStreet());
-                    zeroScoreStreetsAfterStreet.add(findInverseStreet(proceedableJunction.getStreet(), junctionToProceedableJunctions));
+                    if (!proceedableJunction.getStreet().isOneway())
+                        zeroScoreStreetsAfterStreet.add(findInverseStreet(proceedableJunction.getStreet(), junctionToProceedableJunctions));
                     recursia(proceedableJunction.getJunctionId(),
-                            timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed, score, bestPath,
+                            timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed, newScore, bestPath,
                             streetsWithTheNextStreet, new ArrayList<>(traveledAlready), zeroScoreStreetsAfterStreet,
                             junctionToProceedableJunctions);
                 }

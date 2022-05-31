@@ -23,17 +23,21 @@ public class AlgorithmImpl implements Algorithm {
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
         List<PathDetails> validPaths = allValidPathsCalculator.calculate(problemInput);
-        List<Street> traversedAlreadyStreets = new ArrayList<>();
+        List<Street> zeroScoreStreets = new ArrayList<>();
         List<List<Street>> allStreetPaths = validPaths.stream().map(PathDetails::getStreets).collect(Collectors.toList());
         List<List<Street>> bestCarsPaths = new ArrayList<>();
         for (int carIndex = 0; carIndex < problemInput.getMissionProperties().getAmountOfCars(); carIndex++) {
             List<Street> bestStreetsPath = null;
             double bestScore = 0;
             for (List<Street> streets : allStreetPaths) {
+                List<Street> tempZeroScoreStreets = new ArrayList<>(zeroScoreStreets);
                 double score = 0;
                 for (Street street : streets) {
-                    if (!traversedAlreadyStreets.contains(street)) {
+                    if (!tempZeroScoreStreets.contains(street)) {
                         score += street.getRequiredTimeToFinishStreet();
+                        tempZeroScoreStreets.add(street);
+                        if(!street.isOneway())
+                            tempZeroScoreStreets.add(findInverseStreet(street,problemInput.getJunctionToProceedableJunctions()));
                     }
                 }
                 if (score > bestScore) {
@@ -42,10 +46,10 @@ public class AlgorithmImpl implements Algorithm {
                 }
             }
             bestCarsPaths.add(bestStreetsPath);
-            traversedAlreadyStreets.addAll(bestStreetsPath);
+            zeroScoreStreets.addAll(bestStreetsPath);
             bestStreetsPath.forEach(street -> {
                 if(!street.isOneway())
-                    traversedAlreadyStreets.add(findInverseStreet(street,problemInput.getJunctionToProceedableJunctions()));
+                    zeroScoreStreets.add(findInverseStreet(street,problemInput.getJunctionToProceedableJunctions()));
             });
         }
         return ProblemOutput.builder().bestCarsPaths(bestCarsPaths).build();
