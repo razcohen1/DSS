@@ -5,6 +5,8 @@ import app.model.PathDetails;
 import app.model.ProblemInput;
 import app.model.ProceedableJunction;
 import app.model.Street;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
@@ -13,8 +15,11 @@ import java.util.Map;
 
 import static app.algorithm.InverseStreetFinder.findInverseStreet;
 
+@Getter
 public class BestPathFinder {
-    private final double percentOptimizationOverPerformance = 90;
+    private final double percentOptimizationOverPerformance = 100;
+    @Setter
+    private double probabiltyToReplaceBest = 1;
 
     public PathDetails findBestPath(ProblemInput problemInput, List<Street> zeroScoreStreets) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
@@ -59,7 +64,7 @@ public class BestPathFinder {
                 }
             }
         }
-        if (isTimeExceeded) {
+        if (isTimeExceeded && Math.random()<probabiltyToReplaceBest) {
             if (score > bestPath.getScore()) {
                 bestPath.setScore(score);
                 bestPath.setStreets(streets);
