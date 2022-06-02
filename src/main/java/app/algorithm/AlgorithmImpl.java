@@ -1,5 +1,6 @@
 package app.algorithm;
 
+import app.algorithm.best.Algorithm;
 import app.model.PathDetails;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static app.algorithm.InverseStreetFinder.findInverseStreet;
+import static app.algorithm.best.InverseStreetFinder.findInverseStreet;
 
 @Getter
 @Setter

@@ -11,8 +11,6 @@ import org.springframework.util.MultiValueMap;
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.algorithm.InverseStreetFinder.findInverseStreet;
-
 public class AllValidPathsCalculator {
     public List<PathDetails> calculate(ProblemInput problemInput) {
         MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();

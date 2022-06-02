@@ -1,4 +1,4 @@
-package app.algorithm;
+package app.algorithm.best;
 
 import app.model.ProceedableJunction;
 import app.model.Street;

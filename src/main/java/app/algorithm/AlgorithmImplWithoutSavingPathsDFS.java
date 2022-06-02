@@ -1,18 +1,21 @@
 package app.algorithm;
 
-import app.model.*;
+import app.algorithm.best.Algorithm;
+import app.model.PathDetails;
+import app.model.ProblemInput;
+import app.model.ProblemOutput;
+import app.model.Street;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.algorithm.InverseStreetFinder.findInverseStreet;
-
 @Getter
 @Setter
-public class AlgorithmImplWithoutSavingPaths implements Algorithm {
-    private BestPathFinder bestPathFinder = new BestPathFinder();
+public class AlgorithmImplWithoutSavingPathsDFS implements Algorithm {
+//    private BestPathFinder bestPathFinder = new BestPathFinder();
+    private BestPathFinderByReferenceDFS bestPathFinder = new BestPathFinderByReferenceDFS();
 
     //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them
     // in both directions gives points

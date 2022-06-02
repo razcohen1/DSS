@@ -1,4 +1,4 @@
-package app.algorithm;
+package app.algorithm.best;
 
 
 import app.model.PathDetails;
@@ -12,8 +12,6 @@ import org.springframework.util.MultiValueMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static app.algorithm.InverseStreetFinder.findInverseStreet;
 
 @Getter
 public class BestPathFinder {

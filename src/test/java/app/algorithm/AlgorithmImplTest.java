@@ -1,10 +1,9 @@
 package app.algorithm;
 
+import app.algorithm.best.JunctionToProceedableJunctionsCreator;
 import app.files.JsonReader;
 import app.model.ProblemInput;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class AlgorithmImplTest {
     private AlgorithmImpl algorithm = new AlgorithmImpl();

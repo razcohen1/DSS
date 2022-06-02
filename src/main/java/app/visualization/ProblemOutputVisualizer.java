@@ -1,8 +1,5 @@
 package app.visualization;
 
-import app.algorithm.AlgorithmImpl;
-import app.algorithm.JunctionToProceedableJunctionsCreator;
-import app.files.JsonReader;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
