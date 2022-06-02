@@ -1,5 +1,8 @@
-package app.algorithm.best;
+package app.algorithm.implementation;
 
+import app.algorithm.Algorithm;
+import app.algorithm.services.BestPathFinder;
+import app.algorithm.services.BestPathFinderByReference;
 import app.model.PathDetails;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -13,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 public class AlgorithmImplWithoutSavingPathsProbability implements Algorithm {
-    private BestPathFinder bestPathFinder = new BestPathFinder();
+    private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
     private int numberOfTimesToRunTheAlgorithm = 100;
 
     //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them

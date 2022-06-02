@@ -1,6 +1,6 @@
-package app.algorithm;
+package app.algorithm.services;
 
-import app.algorithm.best.JunctionToProceedableJunctionsCreator;
+import app.algorithm.services.JunctionToProceedableJunctionsCreator;
 import app.model.Junction;
 import app.model.ProceedableJunction;
 import app.model.Street;
@@ -12,8 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static app.algorithm.best.InverseStreetFinder.createStreetToInverseStreetMap;
-import static app.algorithm.best.InverseStreetFinder.findInverseStreet;
+import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
+import static app.algorithm.services.InverseStreetFinder.findInverseStreet;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package app.algorithm.best;
+package app.algorithm;
 
 import app.model.ProblemInput;
 import app.model.ProblemOutput;

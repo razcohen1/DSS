@@ -1,4 +1,4 @@
-package app.algorithm;
+package app.algorithm.services;
 
 
 import app.model.PathDetails;
@@ -15,11 +15,15 @@ import java.util.Map;
 
 @Getter
 public class BestPathFinderByReference {
-    private final double percentOptimizationOverPerformance = 100;
+    private final double percentOptimizationOverPerformance = 90;
     @Setter
     private double probabiltyToReplaceBest = 1;
+    private long startTime;
+    private long endTime;
+    private final double allowedTimeToRun = 10000;
 
     public PathDetails findBestPath(ProblemInput problemInput, List<Street> zeroScoreStreets) {
+        startTime = System.currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();
         long initialJunctionId = problemInput.getMissionProperties().getInitialJunctionId();
@@ -36,6 +40,9 @@ public class BestPathFinderByReference {
     private void recursia(long currentJunction, double timePassed, double timeAllowed, double score, PathDetails bestPath,
                           List<Street> streets, List<Street> traveledAlready, List<Street> zeroScoreStreets,
                           MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions, Map<Street, Street> streetToInverseStreet) {
+        endTime = System.currentTimeMillis();
+        if(endTime-startTime> allowedTimeToRun)
+            return;
         double newScore;
         for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
             if (!traveledAlready.contains(proceedableJunction.getStreet()) && canPassBestPath(score, timePassed, timeAllowed, bestPath)) {

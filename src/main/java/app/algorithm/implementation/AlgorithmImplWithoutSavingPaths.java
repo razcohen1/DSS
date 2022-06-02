@@ -1,10 +1,8 @@
-package app.algorithm;
+package app.algorithm.implementation;
 
-import app.algorithm.best.Algorithm;
-import app.model.PathDetails;
-import app.model.ProblemInput;
-import app.model.ProblemOutput;
-import app.model.Street;
+import app.algorithm.Algorithm;
+import app.algorithm.services.BestPathFinderByReference;
+import app.model.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +11,9 @@ import java.util.List;
 
 @Getter
 @Setter
-public class AlgorithmImplWithoutSavingPathsDFS implements Algorithm {
+public class AlgorithmImplWithoutSavingPaths implements Algorithm {
 //    private BestPathFinder bestPathFinder = new BestPathFinder();
-    private BestPathFinderByReferenceDFS bestPathFinder = new BestPathFinderByReferenceDFS();
+    private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
 
     //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them
     // in both directions gives points
