@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Service
-@ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "true")
+@ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "true", matchIfMissing = true)
 public class AlgorithmImplWithoutSavingPaths implements Algorithm {
     private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
 

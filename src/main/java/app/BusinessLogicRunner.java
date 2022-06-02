@@ -1,15 +1,12 @@
 package app;
 
 import app.algorithm.Algorithm;
-import app.algorithm.implementation.AlgorithmImplWithoutSavingPaths;
-import app.algorithm.services.InverseStreetFinder;
-import app.algorithm.services.JunctionToProceedableJunctionsCreator;
 import app.files.JsonReader;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.ProceedableJunction;
+import app.visualization.ProblemOutputVisualizer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -18,7 +15,6 @@ import javax.annotation.PostConstruct;
 
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
 import static app.algorithm.services.JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap;
-import static app.visualization.ProblemOutputVisualizer.visualize;
 
 @Service
 public class BusinessLogicRunner {
@@ -26,6 +22,8 @@ public class BusinessLogicRunner {
     private String inputFilepath;
     @Autowired
     private Algorithm algorithm;
+    @Autowired
+    private ProblemOutputVisualizer visualizer;
     private JsonReader jsonReader = new JsonReader();
 
     @PostConstruct
@@ -39,6 +37,6 @@ public class BusinessLogicRunner {
         problemInput.setJunctionToProceedableJunctions(junctionToProceedableJunctionsMap);
         problemInput.setStreetToInverseStreet(createStreetToInverseStreetMap(problemInput.getStreetsList(), junctionToProceedableJunctionsMap));
         ProblemOutput problemOutput = algorithm.run(problemInput);
-        visualize(problemInput, problemOutput);
+        visualizer.visualize(problemInput, problemOutput);
     }
 }

@@ -21,7 +21,7 @@ import java.util.List;
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "false")
 public class AlgorithmImplWithoutSavingPathsProbability implements Algorithm {
     private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
-    @Value(value = "${best.of}")
+    @Value(value = "${best.of:100}")
     private int iterations;
 
     //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them
@@ -55,8 +55,11 @@ public class AlgorithmImplWithoutSavingPathsProbability implements Algorithm {
             });
             bestPathFinder.setProbabiltyToReplaceBest(bestPathFinder.getProbabiltyToReplaceBest() + 0.2);
         }
-        double totalScore = bestPaths.stream().map(PathDetails::getScore).reduce((double) 0, Double::sum);
-        System.out.println(totalScore);
-        return ProblemOutput.builder().bestPaths(bestPaths).bestCarsPaths(bestCarsPaths).totalScore(totalScore).build();
+
+        return ProblemOutput.builder().bestPaths(bestPaths).bestCarsPaths(bestCarsPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private Double calculateTotalScore(List<PathDetails> bestPaths) {
+        return bestPaths.stream().map(PathDetails::getScore).reduce((double) 0, Double::sum);
     }
 }
