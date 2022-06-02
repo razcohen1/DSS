@@ -5,14 +5,18 @@ import app.algorithm.services.BestPathFinderByReference;
 import app.model.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
+@Service
+@ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "true")
 public class AlgorithmImplWithoutSavingPaths implements Algorithm {
-//    private BestPathFinder bestPathFinder = new BestPathFinder();
     private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
 
     //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them

@@ -1,6 +1,5 @@
 package app;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
@@ -11,7 +10,5 @@ public class ApplicationStarter {
         SpringApplicationBuilder springApplicationBuilder = new SpringApplicationBuilder(ApplicationStarter.class);
         springApplicationBuilder.headless(false);
         springApplicationBuilder.run(args);
-//        SpringApplication.run(ApplicationStarter.class, args);
     }
-
 }

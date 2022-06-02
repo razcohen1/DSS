@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Getter
 public class BestPathFinderByReference {
-    private final double percentOptimizationOverPerformance = 90;
+    private final double percentOptimizationOverPerformance = 100;
     @Setter
     private double probabiltyToReplaceBest = 1;
     private long startTime;
