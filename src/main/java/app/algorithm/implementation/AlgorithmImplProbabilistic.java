@@ -14,18 +14,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
 @Service
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "false")
-public class AlgorithmImplWithoutSavingPathsProbability implements Algorithm {
+public class AlgorithmImplProbabilistic implements Algorithm {
     private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
     @Value(value = "${best.of:100}")
     private int iterations;
 
-    //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them
-    // in both directions gives points
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
         ProblemOutput best = ProblemOutput.builder().totalScore(0).build();
@@ -35,28 +34,41 @@ public class AlgorithmImplWithoutSavingPathsProbability implements Algorithm {
             if (currentOutput.getTotalScore() > best.getTotalScore())
                 best = currentOutput;
         }
+
         System.out.println("best = " + best.getTotalScore());
         return best;
     }
 
     private ProblemOutput runOnce(ProblemInput problemInput) {
-        bestPathFinder.setProbabiltyToReplaceBest(0.2);
+        Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<PathDetails> bestPaths = new ArrayList<>();
-        List<List<Street>> bestCarsPaths = new ArrayList<>();
-        List<Street> traversedAlreadyStreets = new ArrayList<>();
-        for (int carIndex = 0; carIndex < problemInput.getMissionProperties().getAmountOfCars(); carIndex++) {
-            PathDetails bestPath = bestPathFinder.findBestPath(problemInput, traversedAlreadyStreets);
-            bestCarsPaths.add(bestPath.getStreets());
+        List<Street> zeroScoreStreets = new ArrayList<>();
+        PathDetails bestPath;
+        bestPathFinder.setProbabiltyToReplaceBest(0.2);
+        for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
+            problemInput.setZeroScoreStreets(zeroScoreStreets);
+            bestPath = bestPathFinder.findBestPath(problemInput);
             bestPaths.add(bestPath);
-            traversedAlreadyStreets.addAll(bestPath.getStreets());
-            bestPath.getStreets().forEach(street -> {
-                if (!street.isOneway())
-                    traversedAlreadyStreets.add(problemInput.getStreetToInverseStreet().get(street));
-            });
+            zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
             bestPathFinder.setProbabiltyToReplaceBest(bestPathFinder.getProbabiltyToReplaceBest() + 0.2);
         }
 
-        return ProblemOutput.builder().bestPaths(bestPaths).bestCarsPaths(bestCarsPaths).totalScore(calculateTotalScore(bestPaths)).build();
+        return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private int getAmountOfCars(ProblemInput problemInput) {
+        return problemInput.getMissionProperties().getAmountOfCars();
+    }
+
+    private List<Street> getZeroScoreStreetsFromPath(PathDetails bestPath, Map<Street, Street> streetToInverseStreet) {
+        List<Street> streets = bestPath.getStreets();
+        List<Street> zeroScoreStreetsFromCurrentRun = new ArrayList<>(streets);
+        streets.forEach(street -> {
+            if (!street.isOneway()) {
+                zeroScoreStreetsFromCurrentRun.add(streetToInverseStreet.get(street));
+            }
+        });
+        return zeroScoreStreetsFromCurrentRun;
     }
 
     private Double calculateTotalScore(List<PathDetails> bestPaths) {

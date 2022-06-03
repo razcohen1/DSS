@@ -22,8 +22,9 @@ public class BestPathFinderByReference {
     private long endTime;
     private final double allowedTimeToRun = 10000;
 
-    public PathDetails findBestPath(ProblemInput problemInput, List<Street> zeroScoreStreets) {
+    public PathDetails findBestPath(ProblemInput problemInput) {
         startTime = System.currentTimeMillis();
+        List<Street> zeroScoreStreets = problemInput.getZeroScoreStreets();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();
         long initialJunctionId = problemInput.getMissionProperties().getInitialJunctionId();
