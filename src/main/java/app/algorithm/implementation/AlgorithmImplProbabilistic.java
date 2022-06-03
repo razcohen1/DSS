@@ -29,7 +29,7 @@ public class AlgorithmImplProbabilistic implements Algorithm {
     private BestPathFinder bestPathFinder;
     @Value(value = "${best.of:100}")
     private int iterations;
-    @Value(value = "${maximum.running.time.wanted.in.seconds:10}")
+    @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
 
     @Override

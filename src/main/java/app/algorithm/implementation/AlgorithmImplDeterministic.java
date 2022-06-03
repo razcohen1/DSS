@@ -27,7 +27,7 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 public class AlgorithmImplDeterministic implements Algorithm {
     @Autowired
     private BestPathFinder bestPathFinder;
-    @Value(value = "${maximum.running.time.wanted.in.seconds:10}")
+    @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
 
     @Override
