@@ -36,7 +36,6 @@ public class BusinessLogicRunner {
         MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(problemInput.getJunctionsList(), problemInput.getStreetsList());
         problemInput.setJunctionToProceedableStreets(junctionToProceedableStreetsMap);
         problemInput.setStreetToInverseStreet(createStreetToInverseStreetMap(problemInput.getStreetsList(), junctionToProceedableStreetsMap));
-//        problemInput.getMissionProperties().setTimeAllowedForCarsItinerariesInSeconds(10000);
         ProblemOutput problemOutput = cityTraverseAlgorithm.run(problemInput);
         System.out.println(problemOutput.getTotalScore());
         visualizer.visualize(problemInput, problemOutput);
