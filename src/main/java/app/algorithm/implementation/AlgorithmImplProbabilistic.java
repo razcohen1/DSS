@@ -1,7 +1,7 @@
 package app.algorithm.implementation;
 
 import app.algorithm.Algorithm;
-import app.algorithm.services.BestPathFinderByReference;
+import app.algorithm.services.BestPathFinder;
 import app.model.PathDetails;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -24,9 +24,11 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @Service
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "false")
 public class AlgorithmImplProbabilistic implements Algorithm {
-    private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
+    private BestPathFinder bestPathFinder = new BestPathFinder();
     @Value(value = "${best.of:100}")
     private int iterations;
+    @Value(value = "${maximum.running.time.wanted.in.seconds:10}")
+    private double maximumRunningTime;
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {

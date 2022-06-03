@@ -1,10 +1,14 @@
 package app.algorithm.implementation;
 
 import app.algorithm.Algorithm;
-import app.algorithm.services.BestPathFinderByReference;
-import app.model.*;
+import app.algorithm.services.BestPathFinder;
+import app.model.PathDetails;
+import app.model.ProblemInput;
+import app.model.ProblemOutput;
+import app.model.Street;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +24,9 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @Service
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "true", matchIfMissing = true)
 public class AlgorithmImplDeterministic implements Algorithm {
-    private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
+    private BestPathFinder bestPathFinder = new BestPathFinder();
+    @Value(value = "${maximum.running.time.wanted.in.seconds:10}")
+    private double maximumRunningTime;
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
