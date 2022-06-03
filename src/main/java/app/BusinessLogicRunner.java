@@ -37,6 +37,7 @@ public class BusinessLogicRunner {
         problemInput.setJunctionToProceedableJunctions(junctionToProceedableJunctionsMap);
         problemInput.setStreetToInverseStreet(createStreetToInverseStreetMap(problemInput.getStreetsList(), junctionToProceedableJunctionsMap));
         ProblemOutput problemOutput = algorithm.run(problemInput);
+        System.out.println(problemOutput.getTotalScore());
         visualizer.visualize(problemInput, problemOutput);
     }
 }

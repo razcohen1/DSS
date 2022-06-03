@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static app.algorithm.services.StreetsScorer.calculateTotalScore;
+import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
+
 @Getter
 @Setter
 @Service
@@ -35,7 +38,6 @@ public class AlgorithmImplProbabilistic implements Algorithm {
                 best = currentOutput;
         }
 
-        System.out.println("best = " + best.getTotalScore());
         return best;
     }
 
@@ -44,13 +46,13 @@ public class AlgorithmImplProbabilistic implements Algorithm {
         List<PathDetails> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         PathDetails bestPath;
-        bestPathFinder.setProbabiltyToReplaceBest(0.2);
+        bestPathFinder.setProbabilityToReplaceBest(0.2);
         for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
             bestPath = bestPathFinder.findBestPath(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
-            bestPathFinder.setProbabiltyToReplaceBest(bestPathFinder.getProbabiltyToReplaceBest() + 0.2);
+            bestPathFinder.setProbabilityToReplaceBest(bestPathFinder.getProbabilityToReplaceBest() + 0.2);
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
@@ -58,20 +60,5 @@ public class AlgorithmImplProbabilistic implements Algorithm {
 
     private int getAmountOfCars(ProblemInput problemInput) {
         return problemInput.getMissionProperties().getAmountOfCars();
-    }
-
-    private List<Street> getZeroScoreStreetsFromPath(PathDetails bestPath, Map<Street, Street> streetToInverseStreet) {
-        List<Street> streets = bestPath.getStreets();
-        List<Street> zeroScoreStreetsFromCurrentRun = new ArrayList<>(streets);
-        streets.forEach(street -> {
-            if (!street.isOneway()) {
-                zeroScoreStreetsFromCurrentRun.add(streetToInverseStreet.get(street));
-            }
-        });
-        return zeroScoreStreetsFromCurrentRun;
-    }
-
-    private Double calculateTotalScore(List<PathDetails> bestPaths) {
-        return bestPaths.stream().map(PathDetails::getScore).reduce((double) 0, Double::sum);
     }
 }

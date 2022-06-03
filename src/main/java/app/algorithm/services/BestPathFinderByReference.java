@@ -17,7 +17,7 @@ import java.util.Map;
 public class BestPathFinderByReference {
     private final double percentOptimizationOverPerformance = 100;
     @Setter
-    private double probabiltyToReplaceBest = 1;
+    private double probabilityToReplaceBest = 1;
     private long startTime;
     private long endTime;
     private final double allowedTimeToRun = 10000;
@@ -72,7 +72,7 @@ public class BestPathFinderByReference {
             }
         }
 
-        if (score > bestPath.getScore() && Math.random() < probabiltyToReplaceBest) {
+        if (score > bestPath.getScore() && Math.random() < probabilityToReplaceBest) {
             bestPath.setScore(score);
             bestPath.setStreets(new ArrayList<>(streets));
             bestPath.setTime(timePassed);

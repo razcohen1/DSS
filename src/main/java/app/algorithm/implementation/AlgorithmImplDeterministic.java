@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static app.algorithm.services.StreetsScorer.calculateTotalScore;
+import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 
 @Getter
 @Setter
@@ -18,24 +22,19 @@ import java.util.List;
 public class AlgorithmImplDeterministic implements Algorithm {
     private BestPathFinderByReference bestPathFinder = new BestPathFinderByReference();
 
-    //TODO: the problem with the bidirectional streets where they show up twice in the json and therefore passing them
-    // in both directions gives points
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
+        Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<PathDetails> bestPaths = new ArrayList<>();
-        List<Street> traversedAlreadyStreets = new ArrayList<>();
+        List<Street> zeroScoreStreets = new ArrayList<>();
+        bestPathFinder.setProbabilityToReplaceBest(1);
         for (int carIndex = 0; carIndex < problemInput.getMissionProperties().getAmountOfCars(); carIndex++) {
-            problemInput.setZeroScoreStreets(traversedAlreadyStreets);
+            problemInput.setZeroScoreStreets(zeroScoreStreets);
             PathDetails bestPath = bestPathFinder.findBestPath(problemInput);
             bestPaths.add(bestPath);
-            traversedAlreadyStreets.addAll(bestPath.getStreets());
-            bestPath.getStreets().forEach(street -> {
-                if (!street.isOneway())
-                    traversedAlreadyStreets.add(problemInput.getStreetToInverseStreet().get(street));
-            });
+            zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
         }
-        double totalScore = bestPaths.stream().map(PathDetails::getScore).reduce((double) 0, Double::sum);
-        System.out.println(totalScore);
-        return ProblemOutput.builder().bestPaths(bestPaths).totalScore(totalScore).build();
+
+        return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
     }
 }
