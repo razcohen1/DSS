@@ -1,7 +1,6 @@
 package app.algorithm.services;
 
 import app.exceptions.InverseStreetNotFoundException;
-import app.model.ProceedableJunction;
 import app.model.Street;
 import org.springframework.util.MultiValueMap;
 

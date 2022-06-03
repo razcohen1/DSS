@@ -1,6 +1,6 @@
 package app.algorithm.services;
 
-import app.model.PathDetails;
+import app.model.Path;
 import app.model.Street;
 
 import java.util.ArrayList;
@@ -9,11 +9,11 @@ import java.util.Map;
 
 public class StreetsScorer {
 
-    public static Double calculateTotalScore(List<PathDetails> bestPaths) {
-        return bestPaths.stream().map(PathDetails::getScore).reduce((double) 0, Double::sum);
+    public static Double calculateTotalScore(List<Path> bestPaths) {
+        return bestPaths.stream().map(Path::getScore).reduce((double) 0, Double::sum);
     }
 
-    public static List<Street> getZeroScoreStreetsFromPath(PathDetails bestPath, Map<Street, Street> streetToInverseStreet) {
+    public static List<Street> getZeroScoreStreetsFromPath(Path bestPath, Map<Street, Street> streetToInverseStreet) {
         List<Street> streets = bestPath.getStreets();
         List<Street> zeroScoreStreetsFromCurrentRun = new ArrayList<Street>(streets);
         streets.forEach(street -> {

@@ -1,7 +1,6 @@
 package app.algorithm.services;
 
 import app.model.Junction;
-import app.model.ProceedableJunction;
 import app.model.Street;
 import org.junit.Test;
 import org.springframework.util.MultiValueMap;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
-import static app.algorithm.services.JunctionToProceedableStreetsCreator.*;
+import static app.algorithm.services.JunctionToProceedableStreetsCreator.createJunctionToProceedableStreetsMap;
 
 public class InverseStreetFinderTest {
 
@@ -32,8 +31,8 @@ public class InverseStreetFinderTest {
 //            add(secondToFirstStreet);
 //            add(Street.builder().junctionFromId(junctionId2).junctionToId(someJunctionId).build());
 //        }};
-//        MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctionsMap = JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap(junctions, streets);
-//        assertThat(findInverseStreet(firstToSecondStreet,junctionToProceedableJunctionsMap),is(secondToFirstStreet));
+//        MultiValueMap<Long, ProceedableStreet> junctionToProceedableStreetsMap = JunctionToProceedableStreetsCreator.createJunctionToProceedableStreetsMap(junctions, streets);
+//        assertThat(findInverseStreet(firstToSecondStreet,junctionToProceedableStreetsMap),is(secondToFirstStreet));
 //    }
 
     @Test

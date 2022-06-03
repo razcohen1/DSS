@@ -1,6 +1,6 @@
 package app.visualization;
 
-import app.model.PathDetails;
+import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
@@ -69,7 +69,7 @@ public class ProblemOutputVisualizer {
         return carIndexToColor;
     }
 
-    private Paint chooseStreetColor(Map<Integer, Color> carIndexToColor, List<PathDetails> bestPaths, Street street) {
+    private Paint chooseStreetColor(Map<Integer, Color> carIndexToColor, List<Path> bestPaths, Street street) {
         for (int carIndex = 0; carIndex < bestPaths.size(); carIndex++) {
             List<Street> streets = bestPaths.get(carIndex).getStreets();
             if (streets.contains(street)) {

@@ -17,7 +17,7 @@ public class ProblemInput {
     private MissionProperties missionProperties;
     private List<Junction> junctionsList;
     private List<Street> streetsList;
-    private MultiValueMap<Long, Street> junctionToProceedableJunctions;
+    private MultiValueMap<Long, Street> junctionToProceedableStreets;
     private Map<Street,Street> streetToInverseStreet;
     private List<Street> zeroScoreStreets;
 }

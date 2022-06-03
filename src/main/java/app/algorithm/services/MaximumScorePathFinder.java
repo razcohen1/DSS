@@ -1,7 +1,7 @@
 package app.algorithm.services;
 
 
-import app.model.PathDetails;
+import app.model.Path;
 import app.model.ProblemInput;
 import app.model.Street;
 import lombok.Getter;
@@ -26,18 +26,18 @@ public class MaximumScorePathFinder {
     private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
 
-    public PathDetails find(ProblemInput problemInput) {
+    public Path find(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
-        MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableJunctions();
-        PathDetails bestPath = PathDetails.builder().score(0).build();
+        MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableStreets();
+        Path bestPath = Path.builder().score(0).build();
         find(getInitialJunctionId(problemInput), 0, getTimeAllowed(problemInput), 0, bestPath,
                 new ArrayList<>(), new ArrayList<>(), problemInput.getZeroScoreStreets(), junctionToProceedableStreets, streetToInverseStreet);
 
         return bestPath;
     }
 
-    private void find(long currentJunction, double timePassed, double timeAllowed, double score, PathDetails bestPath,
+    private void find(long currentJunction, double timePassed, double timeAllowed, double score, Path bestPath,
                       List<Street> currentPath, List<Street> alreadyTraveledStreets, List<Street> zeroScoreStreets,
                       MultiValueMap<Long, Street> junctionToProceedableStreets, Map<Street, Street> streetToInverseStreet) {
         double newScore;
@@ -55,7 +55,7 @@ public class MaximumScorePathFinder {
         replaceBestPathIfBetter(currentPath, score, bestPath, timePassed);
     }
 
-    private boolean streetShouldBeTraveled(Street proceedableStreet, double score, double timePassed, double timeAllowed, PathDetails bestPath, List<Street> alreadyTraveledStreets) {
+    private boolean streetShouldBeTraveled(Street proceedableStreet, double score, double timePassed, double timeAllowed, Path bestPath, List<Street> alreadyTraveledStreets) {
         return canFinishStreetInTime(timePassed, timeAllowed, proceedableStreet) &&
                 canPassBestScore(score, timePassed, timeAllowed, bestPath) &&
                 streetHasNotBeenTraveledAlready(proceedableStreet, alreadyTraveledStreets);
@@ -81,7 +81,7 @@ public class MaximumScorePathFinder {
             zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
     }
 
-    private void replaceBestPathIfBetter(List<Street> currentPath, double score, PathDetails bestPath, double timePassed) {
+    private void replaceBestPathIfBetter(List<Street> currentPath, double score, Path bestPath, double timePassed) {
         if (score > bestPath.getScore() && Math.random() < probabilityToReplaceBest) {
             bestPath.setScore(score);
             bestPath.setStreets(new ArrayList<>(currentPath));
@@ -117,7 +117,7 @@ public class MaximumScorePathFinder {
         return (double) (currentTimeMillis() - startTimeInMillis) / 1000;
     }
 
-    private boolean canPassBestScore(double score, double timePassed, double timeAllowed, PathDetails bestPath) {
+    private boolean canPassBestScore(double score, double timePassed, double timeAllowed, Path bestPath) {
         return score + (timeAllowed - timePassed) > bestPath.getScore() + dropEarlyPathsThatCantBeatBestScoreBy;
     }
 }

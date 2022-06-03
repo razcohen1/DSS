@@ -34,7 +34,7 @@ public class BusinessLogicRunner {
     public void run() {
         ProblemInput problemInput = jsonReader.read(inputFilepath, ProblemInput.class);
         MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(problemInput.getJunctionsList(), problemInput.getStreetsList());
-        problemInput.setJunctionToProceedableJunctions(junctionToProceedableStreetsMap);
+        problemInput.setJunctionToProceedableStreets(junctionToProceedableStreetsMap);
         problemInput.setStreetToInverseStreet(createStreetToInverseStreetMap(problemInput.getStreetsList(), junctionToProceedableStreetsMap));
 //        problemInput.getMissionProperties().setTimeAllowedForCarsItinerariesInSeconds(10000);
         ProblemOutput problemOutput = cityTraverseAlgorithm.run(problemInput);

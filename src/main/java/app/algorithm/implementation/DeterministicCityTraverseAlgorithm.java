@@ -2,7 +2,7 @@ package app.algorithm.implementation;
 
 import app.algorithm.CityTraverseAlgorithm;
 import app.algorithm.services.MaximumScorePathFinder;
-import app.model.PathDetails;
+import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
@@ -33,14 +33,14 @@ public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
-        List<PathDetails> bestPaths = new ArrayList<>();
+        List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
         maximumScorePathFinder.setProbabilityToReplaceBest(1);
         maximumScorePathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
-            PathDetails bestPath = maximumScorePathFinder.find(problemInput);
+            Path bestPath = maximumScorePathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
         }

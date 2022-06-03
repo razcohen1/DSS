@@ -2,7 +2,7 @@ package app.algorithm.implementation;
 
 import app.algorithm.CityTraverseAlgorithm;
 import app.algorithm.services.MaximumScorePathFinder;
-import app.model.PathDetails;
+import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
@@ -48,9 +48,9 @@ public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm
 
     private ProblemOutput runOnce(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
-        List<PathDetails> bestPaths = new ArrayList<>();
+        List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
-        PathDetails bestPath;
+        Path bestPath;
         bestPathFinder.setProbabilityToReplaceBest(0.2);
         for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);

@@ -10,6 +10,6 @@ import java.util.List;
 @Setter
 @Builder
 public class ProblemOutput {
-    List<PathDetails> bestPaths;
+    List<Path> bestPaths;
     double totalScore;
 }
