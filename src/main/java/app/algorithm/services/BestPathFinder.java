@@ -7,6 +7,8 @@ import app.model.ProceedableJunction;
 import app.model.Street;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
@@ -17,10 +19,12 @@ import static java.lang.System.currentTimeMillis;
 
 @Getter
 @Setter
+@Service
 public class BestPathFinder {
-    private final double percentOptimizationOverPerformance = 100;
-    private double probabilityToReplaceBest = 1;
-    private double maximumRunningTimeInSeconds = 10;
+    @Value(value = "${percent.optimization.over.performance:100}")
+    private double percentOptimizationOverPerformance;
+    private double probabilityToReplaceBest;
+    private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
 
     public PathDetails findBestPath(ProblemInput problemInput) {

@@ -8,6 +8,7 @@ import app.model.ProblemOutput;
 import app.model.Street;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @Service
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "true", matchIfMissing = true)
 public class AlgorithmImplDeterministic implements Algorithm {
-    private BestPathFinder bestPathFinder = new BestPathFinder();
+    @Autowired
+    private BestPathFinder bestPathFinder;
     @Value(value = "${maximum.running.time.wanted.in.seconds:10}")
     private double maximumRunningTime;
 
@@ -33,8 +35,10 @@ public class AlgorithmImplDeterministic implements Algorithm {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<PathDetails> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
+        int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
         bestPathFinder.setProbabilityToReplaceBest(1);
-        for (int carIndex = 0; carIndex < problemInput.getMissionProperties().getAmountOfCars(); carIndex++) {
+        bestPathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
             PathDetails bestPath = bestPathFinder.findBestPath(problemInput);
             bestPaths.add(bestPath);

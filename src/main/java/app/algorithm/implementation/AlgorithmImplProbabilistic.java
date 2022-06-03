@@ -8,6 +8,7 @@ import app.model.ProblemOutput;
 import app.model.Street;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @Service
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "false")
 public class AlgorithmImplProbabilistic implements Algorithm {
-    private BestPathFinder bestPathFinder = new BestPathFinder();
+    @Autowired
+    private BestPathFinder bestPathFinder;
     @Value(value = "${best.of:100}")
     private int iterations;
     @Value(value = "${maximum.running.time.wanted.in.seconds:10}")
@@ -32,6 +34,7 @@ public class AlgorithmImplProbabilistic implements Algorithm {
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
+        bestPathFinder.setMaximumRunningTimeInSeconds(calculateMaximumRunningTimePerCall(problemInput));
         ProblemOutput best = ProblemOutput.builder().totalScore(0).build();
         ProblemOutput currentOutput;
         for (int i = 0; i < iterations; i++) {
@@ -58,6 +61,10 @@ public class AlgorithmImplProbabilistic implements Algorithm {
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private double calculateMaximumRunningTimePerCall(ProblemInput problemInput) {
+        return maximumRunningTime / (iterations * getAmountOfCars(problemInput));
     }
 
     private int getAmountOfCars(ProblemInput problemInput) {
