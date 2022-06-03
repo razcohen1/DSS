@@ -1,7 +1,7 @@
 package app.algorithm.implementation;
 
 import app.algorithm.Algorithm;
-import app.algorithm.services.BestPathFinder;
+import app.algorithm.services.MaximumScorePathFinder;
 import app.model.PathDetails;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -26,7 +26,7 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "true", matchIfMissing = true)
 public class AlgorithmImplDeterministic implements Algorithm {
     @Autowired
-    private BestPathFinder bestPathFinder;
+    private MaximumScorePathFinder maximumScorePathFinder;
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
 
@@ -36,11 +36,11 @@ public class AlgorithmImplDeterministic implements Algorithm {
         List<PathDetails> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
-        bestPathFinder.setProbabilityToReplaceBest(1);
-        bestPathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        maximumScorePathFinder.setProbabilityToReplaceBest(1);
+        maximumScorePathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
-            PathDetails bestPath = bestPathFinder.findBestPath(problemInput);
+            PathDetails bestPath = maximumScorePathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
         }

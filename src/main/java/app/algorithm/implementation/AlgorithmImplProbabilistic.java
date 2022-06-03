@@ -1,7 +1,7 @@
 package app.algorithm.implementation;
 
 import app.algorithm.Algorithm;
-import app.algorithm.services.BestPathFinder;
+import app.algorithm.services.MaximumScorePathFinder;
 import app.model.PathDetails;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -26,7 +26,7 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "false")
 public class AlgorithmImplProbabilistic implements Algorithm {
     @Autowired
-    private BestPathFinder bestPathFinder;
+    private MaximumScorePathFinder bestPathFinder;
     @Value(value = "${best.of:100}")
     private int iterations;
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
@@ -54,7 +54,7 @@ public class AlgorithmImplProbabilistic implements Algorithm {
         bestPathFinder.setProbabilityToReplaceBest(0.2);
         for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
-            bestPath = bestPathFinder.findBestPath(problemInput);
+            bestPath = bestPathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
             bestPathFinder.setProbabilityToReplaceBest(bestPathFinder.getProbabilityToReplaceBest() + 0.2);
