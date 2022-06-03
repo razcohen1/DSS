@@ -20,8 +20,8 @@ import static java.lang.System.currentTimeMillis;
 @Setter
 @Service
 public class MaximumScorePathFinder {
-    @Value(value = "${percent.optimization.over.performance:100}")
-    private double percentOptimizationOverPerformance;
+    @Value(value = "${drop.early.paths.that.cant.beat.best.score.by:0}")
+    private double dropEarlyPathsThatCantBeatBestScoreBy;
     private double probabilityToReplaceBest;
     private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
@@ -117,8 +117,7 @@ public class MaximumScorePathFinder {
         return (double) (currentTimeMillis() - startTimeInMillis) / 1000;
     }
 
-    //TODO: decide what to do with the percentOptimizationOverPerformance
     private boolean canPassBestScore(double score, double timePassed, double timeAllowed, PathDetails bestPath) {
-        return score + (timeAllowed - timePassed) > bestPath.getScore() + 100 * (100 - percentOptimizationOverPerformance) / 100;
+        return score + (timeAllowed - timePassed) > bestPath.getScore() + dropEarlyPathsThatCantBeatBestScoreBy;
     }
 }
