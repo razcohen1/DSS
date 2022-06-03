@@ -4,7 +4,7 @@ import app.algorithm.Algorithm;
 import app.files.JsonReader;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
-import app.model.ProceedableJunction;
+import app.model.Street;
 import app.visualization.ProblemOutputVisualizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +14,7 @@ import org.springframework.util.MultiValueMap;
 import javax.annotation.PostConstruct;
 
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
-import static app.algorithm.services.JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap;
+import static app.algorithm.services.JunctionToProceedableStreetsCreator.createJunctionToProceedableStreetsMap;
 
 @Service
 public class BusinessLogicRunner {
@@ -33,9 +33,9 @@ public class BusinessLogicRunner {
 
     public void run() {
         ProblemInput problemInput = jsonReader.read(inputFilepath, ProblemInput.class);
-        MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctionsMap = createJunctionToProceedableJunctionsMap(problemInput.getJunctionsList(), problemInput.getStreetsList());
-        problemInput.setJunctionToProceedableJunctions(junctionToProceedableJunctionsMap);
-        problemInput.setStreetToInverseStreet(createStreetToInverseStreetMap(problemInput.getStreetsList(), junctionToProceedableJunctionsMap));
+        MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(problemInput.getJunctionsList(), problemInput.getStreetsList());
+        problemInput.setJunctionToProceedableJunctions(junctionToProceedableStreetsMap);
+        problemInput.setStreetToInverseStreet(createStreetToInverseStreetMap(problemInput.getStreetsList(), junctionToProceedableStreetsMap));
 //        problemInput.getMissionProperties().setTimeAllowedForCarsItinerariesInSeconds(10000);
         ProblemOutput problemOutput = algorithm.run(problemInput);
         System.out.println(problemOutput.getTotalScore());

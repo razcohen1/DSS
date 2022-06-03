@@ -30,42 +30,39 @@ public class BestPathFinder {
     public PathDetails findBestPath(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
-        MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();
+        MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableJunctions();
         PathDetails bestPath = PathDetails.builder().score(0).build();
         findBestPath(getInitialJunctionId(problemInput), 0, getTimeAllowed(problemInput), 0, bestPath,
-                new ArrayList<>(), new ArrayList<>(), problemInput.getZeroScoreStreets(), junctionToProceedableJunctions, streetToInverseStreet);
+                new ArrayList<>(), new ArrayList<>(), problemInput.getZeroScoreStreets(), junctionToProceedableStreets, streetToInverseStreet);
 
         return bestPath;
     }
 
     private void findBestPath(long currentJunction, double timePassed, double timeAllowed, double score, PathDetails bestPath,
                               List<Street> currentPath, List<Street> traveledAlready, List<Street> zeroScoreStreets,
-                              MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions, Map<Street, Street> streetToInverseStreet) {
+                              MultiValueMap<Long, Street> junctionToProceedableStreets, Map<Street, Street> streetToInverseStreet) {
         double newScore;
         if (maximumRunningTimeNotExceeded())
-            for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
-                Street street = proceedableJunction.getStreet();
-                if (!traveledAlready.contains(street) && canPassBestPath(score, timePassed, timeAllowed, bestPath)) {
-                    if (timePassed + street.getRequiredTimeToFinishStreet() <= timeAllowed) {
-                        traveledAlready.add(street);
-//                    if(!proceedableJunction.getStreet().isOneway())
-//                        traveledAlready.add(findInverseStreet(proceedableJunction.getStreet(),junctionToProceedableJunctions));
-                        currentPath.add(street);
+            for (Street proceedableStreet : junctionToProceedableStreets.get(currentJunction)) {
+                if (!traveledAlready.contains(proceedableStreet) && canPassBestPath(score, timePassed, timeAllowed, bestPath)) {
+                    if (timePassed + proceedableStreet.getRequiredTimeToFinishStreet() <= timeAllowed) {
+                        traveledAlready.add(proceedableStreet);
+                        currentPath.add(proceedableStreet);
                         newScore = score;
-                        if (!zeroScoreStreets.contains(street))
-                            newScore += street.getRequiredTimeToFinishStreet();
-                        zeroScoreStreets.add(street);
-                        if (!street.isOneway())
-                            zeroScoreStreets.add(streetToInverseStreet.get(street));
-                        findBestPath(proceedableJunction.getJunctionId(),
-                                timePassed + street.getRequiredTimeToFinishStreet(), timeAllowed, newScore, bestPath,
+                        if (!zeroScoreStreets.contains(proceedableStreet))
+                            newScore += proceedableStreet.getRequiredTimeToFinishStreet();
+                        zeroScoreStreets.add(proceedableStreet);
+                        if (!proceedableStreet.isOneway())
+                            zeroScoreStreets.add(streetToInverseStreet.get(proceedableStreet));
+                        findBestPath(proceedableStreet.getJunctionToId(),
+                                timePassed + proceedableStreet.getRequiredTimeToFinishStreet(), timeAllowed, newScore, bestPath,
                                 currentPath, traveledAlready, zeroScoreStreets,
-                                junctionToProceedableJunctions, streetToInverseStreet);
+                                junctionToProceedableStreets, streetToInverseStreet);
 
                         traveledAlready.remove(traveledAlready.size() - 1);
                         currentPath.remove(currentPath.size() - 1);
                         zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
-                        if (!street.isOneway())
+                        if (!proceedableStreet.isOneway())
                             zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
                     }
                 }

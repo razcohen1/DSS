@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
+import static app.algorithm.services.JunctionToProceedableStreetsCreator.*;
 
 public class InverseStreetFinderTest {
 
@@ -52,8 +53,8 @@ public class InverseStreetFinderTest {
             add(Street.builder().junctionFromId(junctionId2).junctionToId(someJunctionId).build());
             add(Street.builder().junctionFromId(someJunctionId).junctionToId(junctionId2).build());
         }};
-        MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctionsMap = JunctionToProceedableJunctionsCreator.createJunctionToProceedableJunctionsMap(junctions, streets);
-        Map<Street, Street> streetToInverseStreetMap = createStreetToInverseStreetMap(streets, junctionToProceedableJunctionsMap);
+        MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(junctions, streets);
+        Map<Street, Street> streetToInverseStreetMap = createStreetToInverseStreetMap(streets, junctionToProceedableStreetsMap);
         int i = 5;
     }
 
