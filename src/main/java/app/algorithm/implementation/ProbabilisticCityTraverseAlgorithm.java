@@ -1,6 +1,6 @@
 package app.algorithm.implementation;
 
-import app.algorithm.Algorithm;
+import app.algorithm.CityTraverseAlgorithm;
 import app.algorithm.services.MaximumScorePathFinder;
 import app.model.PathDetails;
 import app.model.ProblemInput;
@@ -23,8 +23,8 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @Getter
 @Setter
 @Service
-@ConditionalOnProperty(value = "algorithm.deterministic", havingValue = "false")
-public class AlgorithmImplProbabilistic implements Algorithm {
+@ConditionalOnProperty(value = "algorithm.implementation", havingValue = "probabilistic")
+public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm {
     @Autowired
     private MaximumScorePathFinder bestPathFinder;
     @Value(value = "${best.of:100}")
