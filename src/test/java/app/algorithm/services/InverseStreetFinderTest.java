@@ -15,26 +15,6 @@ import static app.algorithm.services.JunctionToProceedableStreetsCreator.createJ
 
 public class InverseStreetFinderTest {
 
-//    @Test
-//    public void findInverseStreetTest() {
-//        long junctionId1 = 1111;
-//        long junctionId2 = 2222;
-//        long someJunctionId = 3333;
-//        List<Junction> junctions = Arrays.asList(createJunction(junctionId1),
-//                createJunction(junctionId2),
-//                createJunction(someJunctionId));
-//        Street firstToSecondStreet = Street.builder().junctionFromId(junctionId1).junctionToId(junctionId2).build();
-//        Street secondToFirstStreet = Street.builder().junctionFromId(junctionId2).junctionToId(junctionId1).build();
-//        List<Street> streets = new ArrayList<Street>() {{
-//            add(firstToSecondStreet);
-//            add(Street.builder().junctionFromId(junctionId1).junctionToId(someJunctionId).build());
-//            add(secondToFirstStreet);
-//            add(Street.builder().junctionFromId(junctionId2).junctionToId(someJunctionId).build());
-//        }};
-//        MultiValueMap<Long, ProceedableStreet> junctionToProceedableStreetsMap = JunctionToProceedableStreetsCreator.createJunctionToProceedableStreetsMap(junctions, streets);
-//        assertThat(findInverseStreet(firstToSecondStreet,junctionToProceedableStreetsMap),is(secondToFirstStreet));
-//    }
-
     @Test
     public void createStreetToInverseStreetMapTest() {
         long junctionId1 = 1111;
@@ -54,7 +34,6 @@ public class InverseStreetFinderTest {
         }};
         MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(junctions, streets);
         Map<Street, Street> streetToInverseStreetMap = createStreetToInverseStreetMap(streets, junctionToProceedableStreetsMap);
-        int i = 5;
     }
 
     private Junction createJunction(long junctionId) {
