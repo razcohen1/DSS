@@ -29,44 +29,43 @@ public class BestPathFinder {
 
     public PathDetails findBestPath(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
-        List<Street> zeroScoreStreets = problemInput.getZeroScoreStreets();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions = problemInput.getJunctionToProceedableJunctions();
-        long initialJunctionId = problemInput.getMissionProperties().getInitialJunctionId();
-        double timeAllowedForCarsItinerariesInSeconds = problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds();
         PathDetails bestPath = PathDetails.builder().score(0).build();
-        recursia(initialJunctionId, 0, timeAllowedForCarsItinerariesInSeconds, 0, bestPath,
-                new ArrayList<>(), new ArrayList<>(), zeroScoreStreets, junctionToProceedableJunctions, streetToInverseStreet);
+        findBestPath(getInitialJunctionId(problemInput), 0, getTimeAllowed(problemInput), 0, bestPath,
+                new ArrayList<>(), new ArrayList<>(), problemInput.getZeroScoreStreets(), junctionToProceedableJunctions, streetToInverseStreet);
+
         return bestPath;
     }
 
-    private void recursia(long currentJunction, double timePassed, double timeAllowed, double score, PathDetails bestPath,
-                          List<Street> streets, List<Street> traveledAlready, List<Street> zeroScoreStreets,
-                          MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions, Map<Street, Street> streetToInverseStreet) {
+    private void findBestPath(long currentJunction, double timePassed, double timeAllowed, double score, PathDetails bestPath,
+                              List<Street> currentPath, List<Street> traveledAlready, List<Street> zeroScoreStreets,
+                              MultiValueMap<Long, ProceedableJunction> junctionToProceedableJunctions, Map<Street, Street> streetToInverseStreet) {
         double newScore;
         if (maximumRunningTimeNotExceeded())
             for (ProceedableJunction proceedableJunction : junctionToProceedableJunctions.get(currentJunction)) {
-                if (!traveledAlready.contains(proceedableJunction.getStreet()) && canPassBestPath(score, timePassed, timeAllowed, bestPath)) {
-                    if (timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet() <= timeAllowed) {
-                        traveledAlready.add(proceedableJunction.getStreet());
+                Street street = proceedableJunction.getStreet();
+                if (!traveledAlready.contains(street) && canPassBestPath(score, timePassed, timeAllowed, bestPath)) {
+                    if (timePassed + street.getRequiredTimeToFinishStreet() <= timeAllowed) {
+                        traveledAlready.add(street);
 //                    if(!proceedableJunction.getStreet().isOneway())
 //                        traveledAlready.add(findInverseStreet(proceedableJunction.getStreet(),junctionToProceedableJunctions));
-                        streets.add(proceedableJunction.getStreet());
+                        currentPath.add(street);
                         newScore = score;
-                        if (!zeroScoreStreets.contains(proceedableJunction.getStreet()))
-                            newScore += proceedableJunction.getStreet().getRequiredTimeToFinishStreet();
-                        zeroScoreStreets.add(proceedableJunction.getStreet());
-                        if (!proceedableJunction.getStreet().isOneway())
-                            zeroScoreStreets.add(streetToInverseStreet.get(proceedableJunction.getStreet()));
-                        recursia(proceedableJunction.getJunctionId(),
-                                timePassed + proceedableJunction.getStreet().getRequiredTimeToFinishStreet(), timeAllowed, newScore, bestPath,
-                                streets, traveledAlready, zeroScoreStreets,
+                        if (!zeroScoreStreets.contains(street))
+                            newScore += street.getRequiredTimeToFinishStreet();
+                        zeroScoreStreets.add(street);
+                        if (!street.isOneway())
+                            zeroScoreStreets.add(streetToInverseStreet.get(street));
+                        findBestPath(proceedableJunction.getJunctionId(),
+                                timePassed + street.getRequiredTimeToFinishStreet(), timeAllowed, newScore, bestPath,
+                                currentPath, traveledAlready, zeroScoreStreets,
                                 junctionToProceedableJunctions, streetToInverseStreet);
 
                         traveledAlready.remove(traveledAlready.size() - 1);
-                        streets.remove(streets.size() - 1);
+                        currentPath.remove(currentPath.size() - 1);
                         zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
-                        if (!proceedableJunction.getStreet().isOneway())
+                        if (!street.isOneway())
                             zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
                     }
                 }
@@ -74,10 +73,18 @@ public class BestPathFinder {
 
         if (score > bestPath.getScore() && Math.random() < probabilityToReplaceBest) {
             bestPath.setScore(score);
-            bestPath.setStreets(new ArrayList<>(streets));
+            bestPath.setStreets(new ArrayList<>(currentPath));
             bestPath.setTime(timePassed);
         }
 
+    }
+
+    private double getTimeAllowed(ProblemInput problemInput) {
+        return problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds();
+    }
+
+    private long getInitialJunctionId(ProblemInput problemInput) {
+        return problemInput.getMissionProperties().getInitialJunctionId();
     }
 
     private boolean maximumRunningTimeNotExceeded() {
