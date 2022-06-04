@@ -31,6 +31,7 @@ public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm
     private int iterations;
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
+    private final double initialProbabilityToReplaceBest = 0.2;
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
@@ -46,22 +47,26 @@ public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm
         return best;
     }
 
-    //TODO: make ramp up generic to number of cars/configurable
     private ProblemOutput runOnce(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         Path bestPath;
-        maximumScorePathFinder.setProbabilityToReplaceBest(0.2);
+        double probabilityRampUp = calculateProbabilityRampUpPerCar(problemInput);
+        maximumScorePathFinder.setProbabilityToReplaceBest(initialProbabilityToReplaceBest);
         for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
             bestPath = maximumScorePathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
-            maximumScorePathFinder.setProbabilityToReplaceBest(maximumScorePathFinder.getProbabilityToReplaceBest() + 0.2);
+            maximumScorePathFinder.setProbabilityToReplaceBest(maximumScorePathFinder.getProbabilityToReplaceBest() + probabilityRampUp);
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private double calculateProbabilityRampUpPerCar(ProblemInput problemInput) {
+        return (1 - initialProbabilityToReplaceBest) / (getAmountOfCars(problemInput) - 1);
     }
 
     private double calculateMaximumRunningTimePerCall(ProblemInput problemInput) {
