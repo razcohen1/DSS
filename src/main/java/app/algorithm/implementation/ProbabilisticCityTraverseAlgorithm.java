@@ -26,7 +26,7 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 @ConditionalOnProperty(value = "algorithm.implementation", havingValue = "probabilistic")
 public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm {
     @Autowired
-    private MaximumScorePathFinder bestPathFinder;
+    private MaximumScorePathFinder maximumScorePathFinder;
     @Value(value = "${best.of:100}")
     private int iterations;
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
@@ -34,7 +34,7 @@ public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
-        bestPathFinder.setMaximumRunningTimeInSeconds(calculateMaximumRunningTimePerCall(problemInput));
+        maximumScorePathFinder.setMaximumRunningTimeInSeconds(calculateMaximumRunningTimePerCall(problemInput));
         ProblemOutput best = ProblemOutput.builder().totalScore(0).build();
         ProblemOutput currentOutput;
         for (int i = 0; i < iterations; i++) {
@@ -46,18 +46,19 @@ public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm
         return best;
     }
 
+    //TODO: make ramp up generic to number of cars/configurable
     private ProblemOutput runOnce(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         Path bestPath;
-        bestPathFinder.setProbabilityToReplaceBest(0.2);
+        maximumScorePathFinder.setProbabilityToReplaceBest(0.2);
         for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
             problemInput.setZeroScoreStreets(zeroScoreStreets);
-            bestPath = bestPathFinder.find(problemInput);
+            bestPath = maximumScorePathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
-            bestPathFinder.setProbabilityToReplaceBest(bestPathFinder.getProbabilityToReplaceBest() + 0.2);
+            maximumScorePathFinder.setProbabilityToReplaceBest(maximumScorePathFinder.getProbabilityToReplaceBest() + 0.2);
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
