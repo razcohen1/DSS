@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class Path {
     List<Street> streets;
-    double time;
+    double timePassed;
     double score;
 
     public void addStreet(Street street) {
@@ -31,11 +31,11 @@ public class Path {
     }
 
     public void increaseTimePassedBy(double value) {
-        this.time += value;
+        this.timePassed += value;
     }
 
     public void decreaseTimePassedBy(double value) {
-        this.time -= value;
+        this.timePassed -= value;
     }
 
     public Street getLastAddedStreet(){

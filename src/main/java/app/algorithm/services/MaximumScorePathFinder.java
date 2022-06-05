@@ -85,7 +85,7 @@ public class MaximumScorePathFinder {
         if (score > bestPath.getScore() && Math.random() < probabilityToReplaceBest) {
             bestPath.setScore(score);
             bestPath.setStreets(new ArrayList<>(currentPath));
-            bestPath.setTime(timePassed);
+            bestPath.setTimePassed(timePassed);
         }
     }
 

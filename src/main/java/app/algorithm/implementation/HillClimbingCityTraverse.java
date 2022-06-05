@@ -45,15 +45,19 @@ public class HillClimbingCityTraverse implements CityTraverseAlgorithm {
     }
 
     private Path findBestPathOutOfAllRestarts(ProblemInput problemInput) {
-        Path bestPath;
-        Path path;
-        bestPath = Path.builder().score(0).build();
-        for (int i = 0; i < numberOfRestarts; i++) {
-            path = hillClimbingMaximalPathFinder.find(problemInput);
-            if (path.getScore() > bestPath.getScore())
-                bestPath = path;
-        }
+        Path bestPath = Path.builder().score(0).build();
+        for (int i = 0; i < numberOfRestarts; i++)
+            replaceBestIfBetter(hillClimbingMaximalPathFinder.find(problemInput), bestPath);
+
         return bestPath;
+    }
+
+    private void replaceBestIfBetter(Path path, Path bestPath) {
+        if (path.getScore() > bestPath.getScore()){
+            bestPath.setScore(path.getScore());
+            bestPath.setStreets(path.getStreets());
+            bestPath.setTimePassed(path.getTimePassed());
+        }
     }
 
     private double calculateRunningTimePerCall(ProblemInput problemInput) {

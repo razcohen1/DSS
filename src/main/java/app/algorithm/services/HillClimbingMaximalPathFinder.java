@@ -26,7 +26,7 @@ public class HillClimbingMaximalPathFinder {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableStreets();
-        Path currentPath = Path.builder().score(0).streets(new ArrayList<>()).time(0).build();
+        Path currentPath = Path.builder().score(0).streets(new ArrayList<>()).timePassed(0).build();
         Path bestPath = Path.builder().score(0).build();
         long currentJunction = getInitialJunctionId(problemInput);
         List<Street> zeroScoreStreets = problemInput.getZeroScoreStreets();
@@ -34,7 +34,8 @@ public class HillClimbingMaximalPathFinder {
         boolean doneSearching = false;
         while (shouldContinueSearching(doneSearching)) {
             Optional<Street> street = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
-            if (street.isPresent() && canFinishStreetInTime(street.get(), currentPath.getTime(), getTimeAllowed(problemInput))) {
+            if (street.isPresent() && canFinishStreetInTime(street.get(), currentPath.getTimePassed(), getTimeAllowed(problemInput))
+                    && currentPath.getScore() + (getTimeAllowed(problemInput) - currentPath.getTimePassed()) > bestPath.getScore()+100) {
                 proceedToStreet(street.get(), currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
                 currentJunction = street.get().getJunctionToId();
             } else if (!currentPath.isEmpty()) {
@@ -83,7 +84,7 @@ public class HillClimbingMaximalPathFinder {
         if (currentPath.getScore() > bestPath.getScore()) {
             bestPath.setScore(currentPath.getScore());
             bestPath.setStreets(new ArrayList<>(currentPath.getStreets()));
-            bestPath.setTime(currentPath.getTime());
+            bestPath.setTimePassed(currentPath.getTimePassed());
         }
     }
 
