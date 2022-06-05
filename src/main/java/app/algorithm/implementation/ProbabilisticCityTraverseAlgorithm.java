@@ -51,11 +51,11 @@ public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
-        Path bestPath;
-        double probabilityRampUp = calculateProbabilityRampUpPerCar(problemInput);
+        problemInput.setZeroScoreStreets(zeroScoreStreets);
         maximumScorePathFinder.setProbabilityToReplaceBest(initialProbabilityToReplaceBest);
+        double probabilityRampUp = calculateProbabilityRampUpPerCar(problemInput);
+        Path bestPath;
         for (int carIndex = 0; carIndex < getAmountOfCars(problemInput); carIndex++) {
-            problemInput.setZeroScoreStreets(zeroScoreStreets);
             bestPath = maximumScorePathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));

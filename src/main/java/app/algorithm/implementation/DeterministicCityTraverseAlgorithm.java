@@ -35,12 +35,12 @@ public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
+        problemInput.setZeroScoreStreets(zeroScoreStreets);
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
-        Path bestPath;
         maximumScorePathFinder.setProbabilityToReplaceBest(1);
         maximumScorePathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        Path bestPath;
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
-            problemInput.setZeroScoreStreets(zeroScoreStreets);
             bestPath = maximumScorePathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));

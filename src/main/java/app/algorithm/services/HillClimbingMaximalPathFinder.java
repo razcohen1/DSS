@@ -20,7 +20,7 @@ import static java.lang.System.currentTimeMillis;
 @Getter
 @Setter
 @Service
-public class SimulatedAnnealingMaximumScorePathFinder {
+public class HillClimbingMaximalPathFinder {
     @Value(value = "${drop.early.paths.that.cant.beat.best.score.by:0}")
     private double dropEarlyPathsThatCantBeatBestScoreBy;
     private double probabilityToReplaceBest;
