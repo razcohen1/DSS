@@ -28,6 +28,8 @@ public class SimulatedAnnealingMaximumScorePathFinder {
     private long startTimeInMillis;
     private double coolingRate = 0.9995;
 
+    //TODO: whats going on with timepassed
+    //TODO: should we go to else when time passed time allowed?
     public Path find(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
@@ -50,7 +52,8 @@ public class SimulatedAnnealingMaximumScorePathFinder {
             Street randomStreet = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
             if (randomStreet != null && (timePassed + randomStreet.getRequiredTimeToFinishStreet() <= timeAllowed
 //score is better with that line    && !zeroScoreStreets.contains(randomStreet) && !zeroScoreStreets.contains(streetToInverseStreet.get(randomStreet))
-                    || maybeAccept(score, score, t))) {
+//                    || maybeAccept(score, score, t)
+            )) {
                 if (!zeroScoreStreets.contains(randomStreet) && !zeroScoreStreets.contains(streetToInverseStreet.get(randomStreet)))
                     score += randomStreet.getRequiredTimeToFinishStreet();
                 currentStreets.add(randomStreet);
@@ -61,6 +64,11 @@ public class SimulatedAnnealingMaximumScorePathFinder {
                 timePassed += randomStreet.getRequiredTimeToFinishStreet();
                 currentJunction = randomStreet.getJunctionToId();
             } else {
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestStreets = new ArrayList<>(currentStreets);
+                    bestTimePassed = timePassed;
+                }
                 if (currentStreets.isEmpty())
                     break;
                 Street lastAddedStreet = currentStreets.get(currentStreets.size() - 1);
@@ -78,6 +86,7 @@ public class SimulatedAnnealingMaximumScorePathFinder {
                 bestStreets = new ArrayList<>(currentStreets);
                 bestTimePassed = timePassed;
             }
+
             t *= coolingRate;
         }
 
@@ -94,14 +103,14 @@ public class SimulatedAnnealingMaximumScorePathFinder {
 
     private Street generateRandomNeighbor(long currentJunction, List<Street> traveledAlready, MultiValueMap<Long, Street> junctionToProceedableStreets,
                                           List<Street> zeroScoreStreets) {
-        List<Street> proceedableStreets = new ArrayList<>(junctionToProceedableStreets.get(currentJunction));
-        proceedableStreets.removeAll(traveledAlready);
-        List<Street> proceedableStreetsWithoutTraveledAndZero = new ArrayList<>(proceedableStreets);
+        List<Street> proceedableStreetsNotTraveledAlready = new ArrayList<>(junctionToProceedableStreets.get(currentJunction));
+        proceedableStreetsNotTraveledAlready.removeAll(traveledAlready);
+        List<Street> proceedableStreetsWithoutTraveledAndZero = new ArrayList<>(proceedableStreetsNotTraveledAlready);
         proceedableStreetsWithoutTraveledAndZero.removeAll(zeroScoreStreets);
         if (!proceedableStreetsWithoutTraveledAndZero.isEmpty()) {
             return proceedableStreetsWithoutTraveledAndZero.get(new Random().nextInt(proceedableStreetsWithoutTraveledAndZero.size()));
-        } else if (!proceedableStreets.isEmpty()) {
-            return proceedableStreets.get(new Random().nextInt(proceedableStreets.size()));
+        } else if (!proceedableStreetsNotTraveledAlready.isEmpty()) {
+            return proceedableStreetsNotTraveledAlready.get(new Random().nextInt(proceedableStreetsNotTraveledAlready.size()));
         } else {
             return null;
         }

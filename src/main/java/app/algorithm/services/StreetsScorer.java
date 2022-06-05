@@ -4,8 +4,12 @@ import app.model.Path;
 import app.model.Street;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import static java.util.Collections.emptyList;
+import static java.util.Optional.ofNullable;
 
 public class StreetsScorer {
 
@@ -14,7 +18,7 @@ public class StreetsScorer {
     }
 
     public static List<Street> getZeroScoreStreetsFromPath(Path bestPath, Map<Street, Street> streetToInverseStreet) {
-        List<Street> streets = bestPath.getStreets();
+        List<Street> streets = ofNullable(bestPath.getStreets()).orElse(emptyList());
         List<Street> zeroScoreStreetsFromCurrentRun = new ArrayList<Street>(streets);
         streets.forEach(street -> {
             if (!street.isOneway()) {

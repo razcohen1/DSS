@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -24,22 +23,30 @@ public class SimulatedAnnealingCityTraverse implements CityTraverseAlgorithm {
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
     private SimulatedAnnealingMaximumScorePathFinder pathFinder = new SimulatedAnnealingMaximumScorePathFinder();
+    private int reruns = 100;
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
-        problemInput.getMissionProperties().setTimeAllowedForCarsItinerariesInSeconds(10000);
-        pathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime);
-        Path bestPath;
+//        problemInput.getMissionProperties().setTimeAllowedForCarsItinerariesInSeconds(10000);
+        pathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime / (problemInput.getMissionProperties().getAmountOfCars() * reruns));
+        Path bestPath = Path.builder().score(0).build();
+        problemInput.setZeroScoreStreets(zeroScoreStreets);
         for (int carIndex = 0; carIndex < problemInput.getMissionProperties().getAmountOfCars(); carIndex++) {
-            problemInput.setZeroScoreStreets(zeroScoreStreets);
-            bestPath = pathFinder.find(problemInput);
+            bestPath = Path.builder().score(0).build();
+//            problemInput.setZeroScoreStreets(new ArrayList<>(zeroScoreStreets));
+            for (int rerunIndex = 0; rerunIndex < reruns; rerunIndex++) {
+                Path path = pathFinder.find(problemInput);
+                if (path.getScore() > bestPath.getScore())
+                    bestPath = path;
+            }
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
         }
 
-        return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+        ProblemOutput build = ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+        return build;
     }
 }
