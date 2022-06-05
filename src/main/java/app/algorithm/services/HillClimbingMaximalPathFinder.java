@@ -27,40 +27,60 @@ public class HillClimbingMaximalPathFinder {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableStreets();
-        double timePassed = 0;
-        double bestTimePassed = 0;
-        double timeAllowed = problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds();
-        double score = 0;
-        double bestScore = 0;
-        List<Street> bestStreets = new ArrayList<>();
-        List<Street> currentStreets = new ArrayList<>();
-        long currentJunction = problemInput.getMissionProperties().getInitialJunctionId();
+        Path currentPath = Path.builder().score(0).streets(new ArrayList<>()).time(0).build();
+        Path bestPath = Path.builder().score(0).build();
+        long currentJunction = getInitialJunctionId(problemInput);
         List<Street> zeroScoreStreets = problemInput.getZeroScoreStreets();
         List<Street> traveledAlready = new ArrayList<>();
         while (maximumRunningTimeNotExceeded()) {
             Street street = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
-            if (street != null && (timePassed + street.getRequiredTimeToFinishStreet() <= timeAllowed)) {
-                score += calculateStreetScore(street, zeroScoreStreets, streetToInverseStreet);
-                proceedToStreet(street, currentStreets, zeroScoreStreets, traveledAlready, streetToInverseStreet);
-                timePassed += street.getRequiredTimeToFinishStreet();
+            if (street != null && canFinishStreetInTime(street, currentPath.getTime(), getTimeAllowed(problemInput))) {
+                proceedToStreet(street, currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
                 currentJunction = street.getJunctionToId();
             } else {
-                if (currentStreets.isEmpty())
+                if (currentPath.getStreets().isEmpty())
                     break;
-                Street lastAddedStreet = getLastAddedStreet(currentStreets);
-                undoProceedToStreet(lastAddedStreet, zeroScoreStreets, currentStreets);
-                score -= calculateStreetScore(lastAddedStreet, zeroScoreStreets, streetToInverseStreet);
-                timePassed -= lastAddedStreet.getRequiredTimeToFinishStreet();
+                Street lastAddedStreet = currentPath.getLastAddedStreet();
+                undoProceedToStreet(lastAddedStreet, currentPath, zeroScoreStreets, streetToInverseStreet);
                 currentJunction = lastAddedStreet.getJunctionFromId();
             }
-            if (score > bestScore) {
-                bestScore = score;
-                bestStreets = new ArrayList<>(currentStreets);
-                bestTimePassed = timePassed;
-            }
+
+            replaceBestIfBetter(currentPath, bestPath);
         }
 
-        return Path.builder().score(bestScore).streets(bestStreets).time(bestTimePassed).build();
+        return bestPath;
+    }
+
+    private double getTimeAllowed(ProblemInput problemInput) {
+        return problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds();
+    }
+
+    private void undoProceedToStreet(Street lastAddedStreet, Path currentPath, List<Street> zeroScoreStreets, Map<Street, Street> streetToInverseStreet) {
+        removeLastStreetFromRelevantLists(lastAddedStreet, currentPath, zeroScoreStreets);
+        currentPath.decreaseScoreBy(calculateStreetScore(lastAddedStreet, zeroScoreStreets, streetToInverseStreet));
+        currentPath.decreaseTimePassedBy(lastAddedStreet.getRequiredTimeToFinishStreet());
+    }
+
+    private void proceedToStreet(Street street, Path currentPath, List<Street> zeroScoreStreets, List<Street> traveledAlready, Map<Street, Street> streetToInverseStreet) {
+        currentPath.increaseScoreBy(calculateStreetScore(street, zeroScoreStreets, streetToInverseStreet));
+        addStreetToRelevantLists(street, currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
+        currentPath.increaseTimePassedBy(street.getRequiredTimeToFinishStreet());
+    }
+
+    private boolean canFinishStreetInTime(Street street, double timePassed, double timeAllowed) {
+        return timePassed + street.getRequiredTimeToFinishStreet() <= timeAllowed;
+    }
+
+    private long getInitialJunctionId(ProblemInput problemInput) {
+        return problemInput.getMissionProperties().getInitialJunctionId();
+    }
+
+    private void replaceBestIfBetter(Path currentPath, Path bestPath) {
+        if (currentPath.getScore() > bestPath.getScore()) {
+            bestPath.setScore(currentPath.getScore());
+            bestPath.setStreets(new ArrayList<>(currentPath.getStreets()));
+            bestPath.setTime(currentPath.getTime());
+        }
     }
 
     private double calculateStreetScore(Street street, List<Street> zeroScoreStreets, Map<Street, Street> streetToInverseStreet) {
@@ -78,15 +98,15 @@ public class HillClimbingMaximalPathFinder {
         return currentStreets.get(currentStreets.size() - 1);
     }
 
-    private void undoProceedToStreet(Street lastAddedStreet, List<Street> zeroScoreStreets, List<Street> currentStreets) {
-        currentStreets.remove(currentStreets.size() - 1);
+    private void removeLastStreetFromRelevantLists(Street lastAddedStreet, Path currentPath, List<Street> zeroScoreStreets) {
+        currentPath.removeLastStreet();
         zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
         if (!lastAddedStreet.isOneway())
             zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
     }
 
-    private void proceedToStreet(Street street, List<Street> currentStreets, List<Street> zeroScoreStreets, List<Street> traveledAlready, Map<Street, Street> streetToInverseStreet) {
-        currentStreets.add(street);
+    private void addStreetToRelevantLists(Street street, Path currentPath, List<Street> zeroScoreStreets, List<Street> traveledAlready, Map<Street, Street> streetToInverseStreet) {
+        currentPath.addStreet(street);
         traveledAlready.add(street);
         zeroScoreStreets.add(street);
         if (!street.isOneway())
