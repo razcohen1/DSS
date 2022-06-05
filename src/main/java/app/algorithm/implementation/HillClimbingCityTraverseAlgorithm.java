@@ -19,7 +19,7 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 
 @Service
 @ConditionalOnProperty(value = "algorithm.implementation", havingValue = "hillclimbing")
-public class HillClimbingCityTraverse implements CityTraverseAlgorithm {
+public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm {
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
     @Value(value = "${number.of.restarts:100}")
