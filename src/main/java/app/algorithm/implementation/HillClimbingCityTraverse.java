@@ -24,7 +24,7 @@ public class HillClimbingCityTraverse implements CityTraverseAlgorithm {
     private double maximumRunningTime;
     @Value(value = "${number.of.restarts:100}")
     private int numberOfRestarts;
-    private HillClimbingMaximalPathFinder pathFinder = new HillClimbingMaximalPathFinder();
+    private HillClimbingMaximalPathFinder hillClimbingMaximalPathFinder = new HillClimbingMaximalPathFinder();
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
@@ -32,21 +32,28 @@ public class HillClimbingCityTraverse implements CityTraverseAlgorithm {
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         problemInput.setZeroScoreStreets(zeroScoreStreets);
-        pathFinder.setMaximumRunningTimeInSeconds(calculateRunningTimePerCall(problemInput));
+        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(calculateRunningTimePerCall(problemInput));
+        int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
         Path bestPath;
-        Path path;
-        for (int carIndex = 0; carIndex < problemInput.getMissionProperties().getAmountOfCars(); carIndex++) {
-            bestPath = Path.builder().score(0).build();
-            for (int i = 0; i < numberOfRestarts; i++) {
-                path = pathFinder.find(problemInput);
-                if (path.getScore() > bestPath.getScore())
-                    bestPath = path;
-            }
+        for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
+            bestPath = findBestPathOutOfAllRestarts(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private Path findBestPathOutOfAllRestarts(ProblemInput problemInput) {
+        Path bestPath;
+        Path path;
+        bestPath = Path.builder().score(0).build();
+        for (int i = 0; i < numberOfRestarts; i++) {
+            path = hillClimbingMaximalPathFinder.find(problemInput);
+            if (path.getScore() > bestPath.getScore())
+                bestPath = path;
+        }
+        return bestPath;
     }
 
     private double calculateRunningTimePerCall(ProblemInput problemInput) {
