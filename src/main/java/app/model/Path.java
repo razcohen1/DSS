@@ -41,4 +41,8 @@ public class Path {
     public Street getLastAddedStreet(){
         return streets.get(streets.size()-1);
     }
+
+    public boolean isEmpty() {
+        return streets.isEmpty();
+    }
 }

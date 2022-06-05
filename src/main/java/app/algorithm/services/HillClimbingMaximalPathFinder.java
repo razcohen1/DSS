@@ -9,12 +9,11 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import static java.lang.System.currentTimeMillis;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 
 @Getter
 @Setter
@@ -32,23 +31,28 @@ public class HillClimbingMaximalPathFinder {
         long currentJunction = getInitialJunctionId(problemInput);
         List<Street> zeroScoreStreets = problemInput.getZeroScoreStreets();
         List<Street> traveledAlready = new ArrayList<>();
-        while (maximumRunningTimeNotExceeded()) {
-            Street street = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
-            if (street != null && canFinishStreetInTime(street, currentPath.getTime(), getTimeAllowed(problemInput))) {
-                proceedToStreet(street, currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
-                currentJunction = street.getJunctionToId();
-            } else {
-                if (currentPath.getStreets().isEmpty())
-                    break;
+        boolean doneSearching = false;
+        while (shouldContinueSearching(doneSearching)) {
+            Optional<Street> street = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
+            if (street.isPresent() && canFinishStreetInTime(street.get(), currentPath.getTime(), getTimeAllowed(problemInput))) {
+                proceedToStreet(street.get(), currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
+                currentJunction = street.get().getJunctionToId();
+            } else if (!currentPath.isEmpty()) {
                 Street lastAddedStreet = currentPath.getLastAddedStreet();
                 undoProceedToStreet(lastAddedStreet, currentPath, zeroScoreStreets, streetToInverseStreet);
                 currentJunction = lastAddedStreet.getJunctionFromId();
+            } else {
+                doneSearching = true;
             }
 
             replaceBestIfBetter(currentPath, bestPath);
         }
 
         return bestPath;
+    }
+
+    private boolean shouldContinueSearching(boolean doneSearching) {
+        return maximumRunningTimeNotExceeded() && !doneSearching;
     }
 
     private double getTimeAllowed(ProblemInput problemInput) {
@@ -94,10 +98,6 @@ public class HillClimbingMaximalPathFinder {
         return !zeroScoreStreets.contains(randomStreet) && !zeroScoreStreets.contains(streetToInverseStreet.get(randomStreet));
     }
 
-    private Street getLastAddedStreet(List<Street> currentStreets) {
-        return currentStreets.get(currentStreets.size() - 1);
-    }
-
     private void removeLastStreetFromRelevantLists(Street lastAddedStreet, Path currentPath, List<Street> zeroScoreStreets) {
         currentPath.removeLastStreet();
         zeroScoreStreets.remove(zeroScoreStreets.size() - 1);
@@ -113,19 +113,24 @@ public class HillClimbingMaximalPathFinder {
             zeroScoreStreets.add(streetToInverseStreet.get(street));
     }
 
-    private Street generateRandomNeighbor(long currentJunction, List<Street> traveledAlready, MultiValueMap<Long, Street> junctionToProceedableStreets,
-                                          List<Street> zeroScoreStreets) {
-        List<Street> proceedableStreetsNotTraveledAlready = new ArrayList<>(junctionToProceedableStreets.get(currentJunction));
-        proceedableStreetsNotTraveledAlready.removeAll(traveledAlready);
-        List<Street> proceedableStreetsWithoutTraveledAndZero = new ArrayList<>(proceedableStreetsNotTraveledAlready);
-        proceedableStreetsWithoutTraveledAndZero.removeAll(zeroScoreStreets);
-        if (!proceedableStreetsWithoutTraveledAndZero.isEmpty()) {
-            return proceedableStreetsWithoutTraveledAndZero.get(new Random().nextInt(proceedableStreetsWithoutTraveledAndZero.size()));
-        } else if (!proceedableStreetsNotTraveledAlready.isEmpty()) {
-            return proceedableStreetsNotTraveledAlready.get(new Random().nextInt(proceedableStreetsNotTraveledAlready.size()));
+    private Optional<Street> generateRandomNeighbor(long currentJunction, List<Street> traveledAlready, MultiValueMap<Long, Street> junctionToProceedableStreets,
+                                                    List<Street> zeroScoreStreets) {
+        List<Street> streetsNotTraveled = new ArrayList<>(junctionToProceedableStreets.get(currentJunction));
+        streetsNotTraveled.removeAll(traveledAlready);
+        List<Street> streetsWorthScore = new ArrayList<>(streetsNotTraveled);
+        streetsWorthScore.removeAll(zeroScoreStreets);
+
+        if (!streetsWorthScore.isEmpty()) {
+            return of(chooseRandomElement(streetsWorthScore));
+        } else if (!streetsNotTraveled.isEmpty()) {
+            return of(chooseRandomElement(streetsNotTraveled));
         } else {
-            return null;
+            return empty();
         }
+    }
+
+    private Street chooseRandomElement(List<Street> streets) {
+        return streets.get(new Random().nextInt(streets.size()));
     }
 
     private boolean maximumRunningTimeNotExceeded() {
