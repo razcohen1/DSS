@@ -6,8 +6,7 @@ import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -22,6 +21,9 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 @ConditionalOnProperty(value = "algorithm.implementation", havingValue = "probabilistic")
 public class ProbabilisticCityTraverseAlgorithm implements CityTraverseAlgorithm {
