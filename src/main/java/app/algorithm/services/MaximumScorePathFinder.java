@@ -4,8 +4,7 @@ package app.algorithm.services;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.Street;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -18,6 +17,9 @@ import static java.lang.System.currentTimeMillis;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class MaximumScorePathFinder {
     @Value(value = "${drop.early.paths.that.cant.beat.best.score.by:0}")
