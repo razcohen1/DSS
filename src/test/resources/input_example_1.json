@@ -1,0 +1,2417 @@
+{
+  "missionProperties": {
+    "amountOfCars": 5,
+    "initialJunctionId": 57058937,
+    "timeAllowedForCarsItinerariesInSeconds": 2500
+  },
+  "junctionsList": [
+    {
+      "junctionId": 57058937,
+      "x": 86643.849,
+      "y": 34733.746
+    },
+    {
+      "junctionId": 57058940,
+      "x": 86643.2197,
+      "y": 34734.3973
+    },
+    {
+      "junctionId": 57058967,
+      "x": 86638.954,
+      "y": 34734.979
+    },
+    {
+      "junctionId": 57064672,
+      "x": 86643.72,
+      "y": 34715.672
+    },
+    {
+      "junctionId": 57064673,
+      "x": 86643.306,
+      "y": 34715.787
+    },
+    {
+      "junctionId": 57064679,
+      "x": 86638.553,
+      "y": 34717.0256
+    },
+    {
+      "junctionId": 57065445,
+      "x": 86635.27,
+      "y": 34735.005000000005
+    },
+    {
+      "junctionId": 57067250,
+      "x": 86642.32370000001,
+      "y": 34720.7299
+    },
+    {
+      "junctionId": 57067252,
+      "x": 86642.99250000001,
+      "y": 34720.056599999996
+    },
+    {
+      "junctionId": 57079230,
+      "x": 86639.329,
+      "y": 34734.08
+    },
+    {
+      "junctionId": 57079232,
+      "x": 86639.011,
+      "y": 34734.301999999996
+    },
+    {
+      "junctionId": 57081368,
+      "x": 86627.998,
+      "y": 34727.511
+    },
+    {
+      "junctionId": 57089806,
+      "x": 86628.952,
+      "y": 34734.719
+    },
+    {
+      "junctionId": 57111082,
+      "x": 86635.333,
+      "y": 34727.561
+    },
+    {
+      "junctionId": 57111384,
+      "x": 86629.99100000001,
+      "y": 34725.368
+    },
+    {
+      "junctionId": 57119800,
+      "x": 86627.4712,
+      "y": 34727.8369
+    },
+    {
+      "junctionId": 57132631,
+      "x": 86643.857,
+      "y": 34734.4052
+    },
+    {
+      "junctionId": 57162660,
+      "x": 86643.9314,
+      "y": 34726.3693
+    },
+    {
+      "junctionId": 57162662,
+      "x": 86643.4241,
+      "y": 34726.0835
+    },
+    {
+      "junctionId": 57172010,
+      "x": 86643.94,
+      "y": 34725.715299999996
+    },
+    {
+      "junctionId": 57180044,
+      "x": 86627.791,
+      "y": 34720.047
+    },
+    {
+      "junctionId": 57180045,
+      "x": 86628.2318,
+      "y": 34719.9296
+    },
+    {
+      "junctionId": 57180951,
+      "x": 86635.363,
+      "y": 34735.005000000005
+    },
+    {
+      "junctionId": 57192309,
+      "x": 86643.863,
+      "y": 34731.703
+    },
+    {
+      "junctionId": 57192310,
+      "x": 86643.538,
+      "y": 34731.704
+    },
+    {
+      "junctionId": 57192323,
+      "x": 86643.862,
+      "y": 34731.774000000005
+    },
+    {
+      "junctionId": 57192324,
+      "x": 86643.53,
+      "y": 34731.776000000005
+    },
+    {
+      "junctionId": 57197987,
+      "x": 86627.7865,
+      "y": 34720.5293
+    },
+    {
+      "junctionId": 57203355,
+      "x": 86643.858,
+      "y": 34716.065
+    },
+    {
+      "junctionId": 57206567,
+      "x": 86642.346,
+      "y": 34734.133
+    },
+    {
+      "junctionId": 57206569,
+      "x": 86642.054,
+      "y": 34734.06
+    },
+    {
+      "junctionId": 57211816,
+      "x": 86629.615,
+      "y": 34735.019
+    },
+    {
+      "junctionId": 57213339,
+      "x": 86642.758,
+      "y": 34727.636
+    },
+    {
+      "junctionId": 57213340,
+      "x": 86642.568,
+      "y": 34727.791000000005
+    },
+    {
+      "junctionId": 57219399,
+      "x": 86639.471,
+      "y": 34734.297
+    },
+    {
+      "junctionId": 57219953,
+      "x": 86633.61600000001,
+      "y": 34731.695999999996
+    },
+    {
+      "junctionId": 57219954,
+      "x": 86633.67,
+      "y": 34732.033
+    },
+    {
+      "junctionId": 57223603,
+      "x": 86630.913,
+      "y": 34734.743
+    },
+    {
+      "junctionId": 57223606,
+      "x": 86632.378,
+      "y": 34735.018
+    },
+    {
+      "junctionId": 57224822,
+      "x": 86637.0547,
+      "y": 34734.991
+    },
+    {
+      "junctionId": 57224859,
+      "x": 86643.852,
+      "y": 34732.127
+    },
+    {
+      "junctionId": 57224865,
+      "x": 86643.51000000001,
+      "y": 34732.343
+    },
+    {
+      "junctionId": 57230191,
+      "x": 86628.95,
+      "y": 34723.095
+    },
+    {
+      "junctionId": 57230196,
+      "x": 86628.966,
+      "y": 34725.375
+    },
+    {
+      "junctionId": 57230198,
+      "x": 86628.93800000001,
+      "y": 34727.532
+    },
+    {
+      "junctionId": 57233283,
+      "x": 86629.217,
+      "y": 34722.18
+    },
+    {
+      "junctionId": 57233288,
+      "x": 86629.514,
+      "y": 34721.052
+    },
+    {
+      "junctionId": 57233293,
+      "x": 86630.819,
+      "y": 34720.659
+    },
+    {
+      "junctionId": 57233300,
+      "x": 86632.216,
+      "y": 34720.931
+    },
+    {
+      "junctionId": 57233311,
+      "x": 86632.432,
+      "y": 34722.005000000005
+    },
+    {
+      "junctionId": 57233317,
+      "x": 86631.986,
+      "y": 34722.477
+    },
+    {
+      "junctionId": 57233322,
+      "x": 86631.84300000001,
+      "y": 34723.121999999996
+    },
+    {
+      "junctionId": 57236003,
+      "x": 86632.222,
+      "y": 34729.611
+    },
+    {
+      "junctionId": 57236007,
+      "x": 86635.34300000001,
+      "y": 34729.632000000005
+    },
+    {
+      "junctionId": 57236009,
+      "x": 86635.827,
+      "y": 34729.631
+    },
+    {
+      "junctionId": 57243074,
+      "x": 86629.99399999999,
+      "y": 34723.11
+    },
+    {
+      "junctionId": 57243076,
+      "x": 86629.924,
+      "y": 34725.371
+    },
+    {
+      "junctionId": 57243080,
+      "x": 86629.89600000001,
+      "y": 34727.535
+    },
+    {
+      "junctionId": 57246248,
+      "x": 86630.31700000001,
+      "y": 34735.028
+    },
+    {
+      "junctionId": 57250258,
+      "x": 86641.822,
+      "y": 34734.25
+    },
+    {
+      "junctionId": 57250263,
+      "x": 86641.7307,
+      "y": 34733.4119
+    },
+    {
+      "junctionId": 57250269,
+      "x": 86640.81899999999,
+      "y": 34732.466
+    },
+    {
+      "junctionId": 57250271,
+      "x": 86639.9016,
+      "y": 34731.6754
+    },
+    {
+      "junctionId": 57250299,
+      "x": 86637.92599999999,
+      "y": 34727.699
+    },
+    {
+      "junctionId": 57250307,
+      "x": 86642.98700000001,
+      "y": 34727.874
+    },
+    {
+      "junctionId": 57250357,
+      "x": 86637.6875,
+      "y": 34734.299999999996
+    },
+    {
+      "junctionId": 57253141,
+      "x": 86630.646,
+      "y": 34733.527
+    },
+    {
+      "junctionId": 57253155,
+      "x": 86630.599,
+      "y": 34733.426999999996
+    },
+    {
+      "junctionId": 57255223,
+      "x": 86630.938,
+      "y": 34723.119
+    },
+    {
+      "junctionId": 57255226,
+      "x": 86630.867,
+      "y": 34725.367
+    },
+    {
+      "junctionId": 57255468,
+      "x": 86627.489,
+      "y": 34727.499
+    },
+    {
+      "junctionId": 57261378,
+      "x": 86631.068,
+      "y": 34728.588
+    },
+    {
+      "junctionId": 57261379,
+      "x": 86631.032,
+      "y": 34731.126000000004
+    },
+    {
+      "junctionId": 57261387,
+      "x": 86631.492,
+      "y": 34732.462
+    },
+    {
+      "junctionId": 57261389,
+      "x": 86631.716,
+      "y": 34732.816999999995
+    },
+    {
+      "junctionId": 57263622,
+      "x": 86637.586,
+      "y": 34723.094000000005
+    },
+    {
+      "junctionId": 57263629,
+      "x": 86642.056,
+      "y": 34723.496
+    },
+    {
+      "junctionId": 57263637,
+      "x": 86644.026,
+      "y": 34723.844
+    },
+    {
+      "junctionId": 57267935,
+      "x": 86633.844,
+      "y": 34735.003
+    },
+    {
+      "junctionId": 57267939,
+      "x": 86632.551,
+      "y": 34732.05
+    },
+    {
+      "junctionId": 57267943,
+      "x": 86632.21299999999,
+      "y": 34730.621
+    },
+    {
+      "junctionId": 57267944,
+      "x": 86632.222,
+      "y": 34728.594000000005
+    },
+    {
+      "junctionId": 57268031,
+      "x": 86630.23300000001,
+      "y": 34722.188
+    },
+    {
+      "junctionId": 57269294,
+      "x": 86632.85399999999,
+      "y": 34723.123
+    },
+    {
+      "junctionId": 57269297,
+      "x": 86633.7252,
+      "y": 34723.1211
+    },
+    {
+      "junctionId": 57270621,
+      "x": 86629.861,
+      "y": 34731.129
+    },
+    {
+      "junctionId": 57270624,
+      "x": 86629.904,
+      "y": 34728.575999999994
+    },
+    {
+      "junctionId": 57272147,
+      "x": 86628.73000000001,
+      "y": 34733.725999999995
+    },
+    {
+      "junctionId": 57272148,
+      "x": 86628.726,
+      "y": 34733.327000000005
+    },
+    {
+      "junctionId": 57272184,
+      "x": 86628.73999999999,
+      "y": 34732.647
+    },
+    {
+      "junctionId": 57277572,
+      "x": 86635.338,
+      "y": 34728.608
+    },
+    {
+      "junctionId": 57277574,
+      "x": 86635.327,
+      "y": 34730.647
+    },
+    {
+      "junctionId": 57277577,
+      "x": 86635.32100000001,
+      "y": 34731.664000000004
+    },
+    {
+      "junctionId": 57277584,
+      "x": 86636.75200000001,
+      "y": 34732.849
+    },
+    {
+      "junctionId": 57278974,
+      "x": 86641.936,
+      "y": 34719.89399999999
+    },
+    {
+      "junctionId": 57279019,
+      "x": 86637.93,
+      "y": 34727.578
+    },
+    {
+      "junctionId": 57286927,
+      "x": 86632.851,
+      "y": 34723.943
+    },
+    {
+      "junctionId": 57286939,
+      "x": 86631.833,
+      "y": 34726.666000000005
+    },
+    {
+      "junctionId": 57290195,
+      "x": 86644.193,
+      "y": 34719.904
+    },
+    {
+      "junctionId": 57292712,
+      "x": 86642.75929999999,
+      "y": 34734.996
+    },
+    {
+      "junctionId": 57292889,
+      "x": 86633.061,
+      "y": 34735.015
+    },
+    {
+      "junctionId": 57293653,
+      "x": 86631.261,
+      "y": 34721.979
+    },
+    {
+      "junctionId": 57293660,
+      "x": 86632.67,
+      "y": 34720.283
+    },
+    {
+      "junctionId": 57293921,
+      "x": 86629.15,
+      "y": 34720.776
+    },
+    {
+      "junctionId": 57312849,
+      "x": 86643.93800000001,
+      "y": 34726.061
+    },
+    {
+      "junctionId": 57312857,
+      "x": 86641.902,
+      "y": 34726.709
+    },
+    {
+      "junctionId": 57312876,
+      "x": 86640.763,
+      "y": 34727.53
+    },
+    {
+      "junctionId": 57317981,
+      "x": 86635.568,
+      "y": 34727.570999999996
+    },
+    {
+      "junctionId": 57318115,
+      "x": 86633.65299999999,
+      "y": 34727.556
+    },
+    {
+      "junctionId": 57318141,
+      "x": 86631.814,
+      "y": 34727.543
+    },
+    {
+      "junctionId": 57323302,
+      "x": 86644.252,
+      "y": 34717.095
+    },
+    {
+      "junctionId": 57323307,
+      "x": 86644.19200000001,
+      "y": 34719.965000000004
+    },
+    {
+      "junctionId": 57323313,
+      "x": 86644.041,
+      "y": 34723.536
+    },
+    {
+      "junctionId": 57335511,
+      "x": 86634.203,
+      "y": 34723.832
+    },
+    {
+      "junctionId": 57345414,
+      "x": 86632.969,
+      "y": 34722.357
+    },
+    {
+      "junctionId": 57356061,
+      "x": 86630.82400000001,
+      "y": 34725.611
+    },
+    {
+      "junctionId": 739033180,
+      "x": 86642.1799,
+      "y": 34724.2726
+    },
+    {
+      "junctionId": 739033231,
+      "x": 86642.573,
+      "y": 34724.4312
+    },
+    {
+      "junctionId": 739033232,
+      "x": 86642.5143,
+      "y": 34724.354
+    },
+    {
+      "junctionId": 739033241,
+      "x": 86642.3171,
+      "y": 34724.7998
+    },
+    {
+      "junctionId": 2666301416,
+      "x": 86627.8909,
+      "y": 34734.951
+    },
+    {
+      "junctionId": 2816973783,
+      "x": 86637.1262,
+      "y": 34734.6522
+    },
+    {
+      "junctionId": 2816973789,
+      "x": 86637.4414,
+      "y": 34734.988000000005
+    },
+    {
+      "junctionId": 3396157041,
+      "x": 86641.965,
+      "y": 34734.9813
+    },
+    {
+      "junctionId": 3396157078,
+      "x": 86629.2238,
+      "y": 34734.9741
+    },
+    {
+      "junctionId": 5611902817,
+      "x": 86642.0556,
+      "y": 34724.1312
+    },
+    {
+      "junctionId": 5611902819,
+      "x": 86642.0673,
+      "y": 34724.3209
+    },
+    {
+      "junctionId": 5611902820,
+      "x": 86642.24059999999,
+      "y": 34724.9712
+    },
+    {
+      "junctionId": 5611904522,
+      "x": 86642.1746,
+      "y": 34724.789000000004
+    },
+    {
+      "junctionId": 5611904533,
+      "x": 86643.6509,
+      "y": 34723.8933
+    },
+    {
+      "junctionId": 5611904539,
+      "x": 86644.0097,
+      "y": 34724.1754
+    },
+    {
+      "junctionId": 5611904542,
+      "x": 86643.66579999999,
+      "y": 34723.8029
+    }
+  ],
+  "streetsList": [
+    {
+      "junctionFromId": 57058937,
+      "junctionToId": 57132631,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 73.303
+    },
+    {
+      "junctionFromId": 57058937,
+      "junctionToId": 57058940,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 95.817
+    },
+    {
+      "junctionFromId": 57058940,
+      "junctionToId": 57058967,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 396.57
+    },
+    {
+      "junctionFromId": 57058967,
+      "junctionToId": 3396157041,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 275.157
+    },
+    {
+      "junctionFromId": 57058967,
+      "junctionToId": 2816973789,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 138.226
+    },
+    {
+      "junctionFromId": 57064672,
+      "junctionToId": 57203355,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 45.487
+    },
+    {
+      "junctionFromId": 57064673,
+      "junctionToId": 57064672,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 39.942
+    },
+    {
+      "junctionFromId": 57064673,
+      "junctionToId": 57203355,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 62.724
+    },
+    {
+      "junctionFromId": 57064679,
+      "junctionToId": 57064673,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 456.157
+    },
+    {
+      "junctionFromId": 57065445,
+      "junctionToId": 57180951,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 8.498
+    },
+    {
+      "junctionFromId": 57065445,
+      "junctionToId": 57267935,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 130.307
+    },
+    {
+      "junctionFromId": 57067250,
+      "junctionToId": 57067252,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 99.499
+    },
+    {
+      "junctionFromId": 57067250,
+      "junctionToId": 57278974,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 102.104
+    },
+    {
+      "junctionFromId": 57067250,
+      "junctionToId": 57263629,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 309.479
+    },
+    {
+      "junctionFromId": 57067252,
+      "junctionToId": 57067250,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 99.499
+    },
+    {
+      "junctionFromId": 57067252,
+      "junctionToId": 57278974,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 99.632
+    },
+    {
+      "junctionFromId": 57067252,
+      "junctionToId": 57290195,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 111.116
+    },
+    {
+      "junctionFromId": 57079230,
+      "junctionToId": 57219399,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 28.347
+    },
+    {
+      "junctionFromId": 57079230,
+      "junctionToId": 57079232,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 38.147
+    },
+    {
+      "junctionFromId": 57079232,
+      "junctionToId": 57250357,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 121.004
+    },
+    {
+      "junctionFromId": 57079232,
+      "junctionToId": 57219399,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 42.039
+    },
+    {
+      "junctionFromId": 57081368,
+      "junctionToId": 57255468,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 46.536
+    },
+    {
+      "junctionFromId": 57081368,
+      "junctionToId": 57230198,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 85.94
+    },
+    {
+      "junctionFromId": 57089806,
+      "junctionToId": 57223603,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 179.216
+    },
+    {
+      "junctionFromId": 57111082,
+      "junctionToId": 57317981,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 21.505
+    },
+    {
+      "junctionFromId": 57111082,
+      "junctionToId": 57277572,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 116.422
+    },
+    {
+      "junctionFromId": 57111082,
+      "junctionToId": 57318115,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 153.559
+    },
+    {
+      "junctionFromId": 57111384,
+      "junctionToId": 57243076,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 6.132
+    },
+    {
+      "junctionFromId": 57111384,
+      "junctionToId": 57255226,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 80.058
+    },
+    {
+      "junctionFromId": 57111384,
+      "junctionToId": 57243080,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 242.072
+    },
+    {
+      "junctionFromId": 57119800,
+      "junctionToId": 57255468,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 37.608
+    },
+    {
+      "junctionFromId": 57119800,
+      "junctionToId": 57081368,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 61.279
+    },
+    {
+      "junctionFromId": 57132631,
+      "junctionToId": 57058940,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 59.591
+    },
+    {
+      "junctionFromId": 57162660,
+      "junctionToId": 57192309,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 593.123
+    },
+    {
+      "junctionFromId": 57162662,
+      "junctionToId": 57312849,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 47.032
+    },
+    {
+      "junctionFromId": 57162662,
+      "junctionToId": 57162660,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 56.934
+    },
+    {
+      "junctionFromId": 57162662,
+      "junctionToId": 57312857,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 159.276
+    },
+    {
+      "junctionFromId": 57172010,
+      "junctionToId": 57312849,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 38.441
+    },
+    {
+      "junctionFromId": 57172010,
+      "junctionToId": 57162662,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 63.924
+    },
+    {
+      "junctionFromId": 57180044,
+      "junctionToId": 57180045,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 42.35
+    },
+    {
+      "junctionFromId": 57180951,
+      "junctionToId": 57065445,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 8.498
+    },
+    {
+      "junctionFromId": 57180951,
+      "junctionToId": 57224822,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 154.595
+    },
+    {
+      "junctionFromId": 57192309,
+      "junctionToId": 57192310,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 29.7
+    },
+    {
+      "junctionFromId": 57192309,
+      "junctionToId": 57192323,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 7.895
+    },
+    {
+      "junctionFromId": 57192310,
+      "junctionToId": 57192309,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 29.7
+    },
+    {
+      "junctionFromId": 57192310,
+      "junctionToId": 57192324,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 8.043
+    },
+    {
+      "junctionFromId": 57192310,
+      "junctionToId": 57250307,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 442.44
+    },
+    {
+      "junctionFromId": 57192323,
+      "junctionToId": 57192324,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 30.34
+    },
+    {
+      "junctionFromId": 57192323,
+      "junctionToId": 57224859,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 39.263
+    },
+    {
+      "junctionFromId": 57192324,
+      "junctionToId": 57192323,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 30.34
+    },
+    {
+      "junctionFromId": 57192324,
+      "junctionToId": 57224865,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 63.101
+    },
+    {
+      "junctionFromId": 57192324,
+      "junctionToId": 57192310,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 8.043
+    },
+    {
+      "junctionFromId": 57197987,
+      "junctionToId": 57180044,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 53.631
+    },
+    {
+      "junctionFromId": 57197987,
+      "junctionToId": 57180045,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 81.78
+    },
+    {
+      "junctionFromId": 57203355,
+      "junctionToId": 57323302,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 120.066
+    },
+    {
+      "junctionFromId": 57206567,
+      "junctionToId": 57206569,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 28.068
+    },
+    {
+      "junctionFromId": 57206567,
+      "junctionToId": 57224865,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 252.74
+    },
+    {
+      "junctionFromId": 57206569,
+      "junctionToId": 57250263,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 78.225
+    },
+    {
+      "junctionFromId": 57211816,
+      "junctionToId": 3396157078,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 36.095
+    },
+    {
+      "junctionFromId": 57211816,
+      "junctionToId": 57246248,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 64.156
+    },
+    {
+      "junctionFromId": 57213339,
+      "junctionToId": 57213340,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 24.465
+    },
+    {
+      "junctionFromId": 57213339,
+      "junctionToId": 57250307,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 33.739
+    },
+    {
+      "junctionFromId": 57213339,
+      "junctionToId": 5611902820,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 304.57
+    },
+    {
+      "junctionFromId": 57213340,
+      "junctionToId": 57213339,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 24.465
+    },
+    {
+      "junctionFromId": 57213340,
+      "junctionToId": 57250307,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 39.515
+    },
+    {
+      "junctionFromId": 57213340,
+      "junctionToId": 57312876,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 168.252
+    },
+    {
+      "junctionFromId": 57219399,
+      "junctionToId": 57250258,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 214.971
+    },
+    {
+      "junctionFromId": 57219953,
+      "junctionToId": 57219954,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 37.796
+    },
+    {
+      "junctionFromId": 57219953,
+      "junctionToId": 57267939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 105.301
+    },
+    {
+      "junctionFromId": 57219953,
+      "junctionToId": 57277577,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 156.223
+    },
+    {
+      "junctionFromId": 57219954,
+      "junctionToId": 57219953,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 37.796
+    },
+    {
+      "junctionFromId": 57223603,
+      "junctionToId": 57223606,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 161.409
+    },
+    {
+      "junctionFromId": 57223603,
+      "junctionToId": 57089806,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 179.216
+    },
+    {
+      "junctionFromId": 57223603,
+      "junctionToId": 57253141,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 139.276
+    },
+    {
+      "junctionFromId": 57223606,
+      "junctionToId": 57292889,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 62.413
+    },
+    {
+      "junctionFromId": 57223606,
+      "junctionToId": 57223603,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 161.409
+    },
+    {
+      "junctionFromId": 57223606,
+      "junctionToId": 57246248,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 188.338
+    },
+    {
+      "junctionFromId": 57224822,
+      "junctionToId": 2816973783,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 38.964
+    },
+    {
+      "junctionFromId": 57224822,
+      "junctionToId": 57180951,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 154.595
+    },
+    {
+      "junctionFromId": 57224822,
+      "junctionToId": 2816973789,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 35.338
+    },
+    {
+      "junctionFromId": 57224859,
+      "junctionToId": 57224865,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 51.368
+    },
+    {
+      "junctionFromId": 57224859,
+      "junctionToId": 57058937,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 180.035
+    },
+    {
+      "junctionFromId": 57224865,
+      "junctionToId": 57224859,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 51.368
+    },
+    {
+      "junctionFromId": 57224865,
+      "junctionToId": 57206567,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 252.74
+    },
+    {
+      "junctionFromId": 57224865,
+      "junctionToId": 57192324,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 63.101
+    },
+    {
+      "junctionFromId": 57230191,
+      "junctionToId": 57243074,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 95.429
+    },
+    {
+      "junctionFromId": 57230191,
+      "junctionToId": 57230196,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 254.227
+    },
+    {
+      "junctionFromId": 57230196,
+      "junctionToId": 57243076,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 87.553
+    },
+    {
+      "junctionFromId": 57230196,
+      "junctionToId": 57230198,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 239.873
+    },
+    {
+      "junctionFromId": 57230196,
+      "junctionToId": 57230191,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 254.227
+    },
+    {
+      "junctionFromId": 57230198,
+      "junctionToId": 57230196,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 239.873
+    },
+    {
+      "junctionFromId": 57230198,
+      "junctionToId": 57081368,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 85.94
+    },
+    {
+      "junctionFromId": 57230198,
+      "junctionToId": 57243080,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 87.55
+    },
+    {
+      "junctionFromId": 57233283,
+      "junctionToId": 57268031,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 92.86
+    },
+    {
+      "junctionFromId": 57233283,
+      "junctionToId": 57233288,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 134.421
+    },
+    {
+      "junctionFromId": 57233288,
+      "junctionToId": 57293921,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 45.262
+    },
+    {
+      "junctionFromId": 57233288,
+      "junctionToId": 57233293,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 137.658
+    },
+    {
+      "junctionFromId": 57233288,
+      "junctionToId": 57233283,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 134.421
+    },
+    {
+      "junctionFromId": 57233293,
+      "junctionToId": 57233300,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 137.79
+    },
+    {
+      "junctionFromId": 57233293,
+      "junctionToId": 57233288,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 137.658
+    },
+    {
+      "junctionFromId": 57233293,
+      "junctionToId": 57268031,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 185.144
+    },
+    {
+      "junctionFromId": 57233300,
+      "junctionToId": 57233311,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 162.031
+    },
+    {
+      "junctionFromId": 57233300,
+      "junctionToId": 57233293,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 137.79
+    },
+    {
+      "junctionFromId": 57233300,
+      "junctionToId": 57293660,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 83.557
+    },
+    {
+      "junctionFromId": 57233300,
+      "junctionToId": 57293653,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 145.865
+    },
+    {
+      "junctionFromId": 57233311,
+      "junctionToId": 57233317,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 66.454
+    },
+    {
+      "junctionFromId": 57233311,
+      "junctionToId": 57345414,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 62.775
+    },
+    {
+      "junctionFromId": 57233311,
+      "junctionToId": 57233300,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 162.031
+    },
+    {
+      "junctionFromId": 57233317,
+      "junctionToId": 57233311,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 66.454
+    },
+    {
+      "junctionFromId": 57233317,
+      "junctionToId": 57293653,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 86.353
+    },
+    {
+      "junctionFromId": 57233317,
+      "junctionToId": 57233322,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 73.935
+    },
+    {
+      "junctionFromId": 57233322,
+      "junctionToId": 57255223,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 82.711
+    },
+    {
+      "junctionFromId": 57233322,
+      "junctionToId": 57233317,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 73.935
+    },
+    {
+      "junctionFromId": 57233322,
+      "junctionToId": 57269294,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 92.404
+    },
+    {
+      "junctionFromId": 57236003,
+      "junctionToId": 57267944,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 113.085
+    },
+    {
+      "junctionFromId": 57236003,
+      "junctionToId": 57267943,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 112.31
+    },
+    {
+      "junctionFromId": 57236003,
+      "junctionToId": 57236007,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 285.224
+    },
+    {
+      "junctionFromId": 57236007,
+      "junctionToId": 57277574,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 112.872
+    },
+    {
+      "junctionFromId": 57236007,
+      "junctionToId": 57277572,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 113.865
+    },
+    {
+      "junctionFromId": 57236007,
+      "junctionToId": 57236009,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 44.231
+    },
+    {
+      "junctionFromId": 57236007,
+      "junctionToId": 57236003,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 285.224
+    },
+    {
+      "junctionFromId": 57236009,
+      "junctionToId": 57236007,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 44.231
+    },
+    {
+      "junctionFromId": 57243074,
+      "junctionToId": 57255223,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 86.281
+    },
+    {
+      "junctionFromId": 57243074,
+      "junctionToId": 57230191,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 95.429
+    },
+    {
+      "junctionFromId": 57243074,
+      "junctionToId": 57243076,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 251.513
+    },
+    {
+      "junctionFromId": 57243076,
+      "junctionToId": 57111384,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 6.132
+    },
+    {
+      "junctionFromId": 57243076,
+      "junctionToId": 57230196,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 87.553
+    },
+    {
+      "junctionFromId": 57243076,
+      "junctionToId": 57243074,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 251.513
+    },
+    {
+      "junctionFromId": 57243080,
+      "junctionToId": 57111384,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 242.072
+    },
+    {
+      "junctionFromId": 57243080,
+      "junctionToId": 57270624,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 115.756
+    },
+    {
+      "junctionFromId": 57243080,
+      "junctionToId": 57230198,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 87.55
+    },
+    {
+      "junctionFromId": 57243080,
+      "junctionToId": 57318141,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 175.287
+    },
+    {
+      "junctionFromId": 57246248,
+      "junctionToId": 57211816,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 64.156
+    },
+    {
+      "junctionFromId": 57246248,
+      "junctionToId": 57223606,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 188.338
+    },
+    {
+      "junctionFromId": 57250258,
+      "junctionToId": 57206567,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 49.619
+    },
+    {
+      "junctionFromId": 57250258,
+      "junctionToId": 57206569,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 30.9
+    },
+    {
+      "junctionFromId": 57250269,
+      "junctionToId": 57079230,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 237.526
+    },
+    {
+      "junctionFromId": 57250269,
+      "junctionToId": 57250271,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 315.375
+    },
+    {
+      "junctionFromId": 57250269,
+      "junctionToId": 57250271,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 121.638
+    },
+    {
+      "junctionFromId": 57250271,
+      "junctionToId": 57250269,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 315.375
+    },
+    {
+      "junctionFromId": 57250271,
+      "junctionToId": 57250269,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 121.638
+    },
+    {
+      "junctionFromId": 57250271,
+      "junctionToId": 57250299,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 614.521
+    },
+    {
+      "junctionFromId": 57250299,
+      "junctionToId": 57279019,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 13.46
+    },
+    {
+      "junctionFromId": 57250299,
+      "junctionToId": 57312876,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 263.441
+    },
+    {
+      "junctionFromId": 57250299,
+      "junctionToId": 57250271,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 614.521
+    },
+    {
+      "junctionFromId": 57250307,
+      "junctionToId": 57213339,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 33.739
+    },
+    {
+      "junctionFromId": 57250307,
+      "junctionToId": 57192310,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 442.44
+    },
+    {
+      "junctionFromId": 57250307,
+      "junctionToId": 57213340,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 39.515
+    },
+    {
+      "junctionFromId": 57250357,
+      "junctionToId": 57224822,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 124.056
+    },
+    {
+      "junctionFromId": 57250357,
+      "junctionToId": 57079232,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 121.004
+    },
+    {
+      "junctionFromId": 57253141,
+      "junctionToId": 57253155,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 11.92
+    },
+    {
+      "junctionFromId": 57253141,
+      "junctionToId": 57253155,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 168.331
+    },
+    {
+      "junctionFromId": 57253141,
+      "junctionToId": 57223603,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 139.276
+    },
+    {
+      "junctionFromId": 57253155,
+      "junctionToId": 57253141,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 11.92
+    },
+    {
+      "junctionFromId": 57253155,
+      "junctionToId": 57253141,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 168.331
+    },
+    {
+      "junctionFromId": 57253155,
+      "junctionToId": 57270621,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 267.371
+    },
+    {
+      "junctionFromId": 57255223,
+      "junctionToId": 57233322,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 82.711
+    },
+    {
+      "junctionFromId": 57255223,
+      "junctionToId": 57243074,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 86.281
+    },
+    {
+      "junctionFromId": 57255223,
+      "junctionToId": 57255226,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 250.054
+    },
+    {
+      "junctionFromId": 57255226,
+      "junctionToId": 57356061,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 27.415
+    },
+    {
+      "junctionFromId": 57255226,
+      "junctionToId": 57111384,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 80.058
+    },
+    {
+      "junctionFromId": 57255226,
+      "junctionToId": 57255223,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 250.054
+    },
+    {
+      "junctionFromId": 57255468,
+      "junctionToId": 57081368,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 46.536
+    },
+    {
+      "junctionFromId": 57255468,
+      "junctionToId": 57119800,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 37.608
+    },
+    {
+      "junctionFromId": 57261378,
+      "junctionToId": 57261379,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 282.232
+    },
+    {
+      "junctionFromId": 57261378,
+      "junctionToId": 57267944,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 105.462
+    },
+    {
+      "junctionFromId": 57261378,
+      "junctionToId": 57270624,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 106.387
+    },
+    {
+      "junctionFromId": 57261379,
+      "junctionToId": 57261378,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 282.232
+    },
+    {
+      "junctionFromId": 57261379,
+      "junctionToId": 57270621,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 107.011
+    },
+    {
+      "junctionFromId": 57261379,
+      "junctionToId": 57261387,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 157.451
+    },
+    {
+      "junctionFromId": 57261387,
+      "junctionToId": 57261389,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 44.466
+    },
+    {
+      "junctionFromId": 57261387,
+      "junctionToId": 57267939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 107.07
+    },
+    {
+      "junctionFromId": 57261387,
+      "junctionToId": 57261379,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 157.451
+    },
+    {
+      "junctionFromId": 57261389,
+      "junctionToId": 57261387,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 44.466
+    },
+    {
+      "junctionFromId": 57263622,
+      "junctionToId": 57263629,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 413.835
+    },
+    {
+      "junctionFromId": 57263622,
+      "junctionToId": 57279019,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 502.275
+    },
+    {
+      "junctionFromId": 57263622,
+      "junctionToId": 57278974,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 728.595
+    },
+    {
+      "junctionFromId": 57263629,
+      "junctionToId": 57263622,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 413.835
+    },
+    {
+      "junctionFromId": 57263629,
+      "junctionToId": 57067250,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 309.479
+    },
+    {
+      "junctionFromId": 57263629,
+      "junctionToId": 5611902817,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 71.369
+    },
+    {
+      "junctionFromId": 57263637,
+      "junctionToId": 5611904539,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 36.88
+    },
+    {
+      "junctionFromId": 57263637,
+      "junctionToId": 5611904542,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 34.739
+    },
+    {
+      "junctionFromId": 57267935,
+      "junctionToId": 57267939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 353.838
+    },
+    {
+      "junctionFromId": 57267935,
+      "junctionToId": 57292889,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 71.563
+    },
+    {
+      "junctionFromId": 57267935,
+      "junctionToId": 57065445,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 130.307
+    },
+    {
+      "junctionFromId": 57267939,
+      "junctionToId": 57261387,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 107.07
+    },
+    {
+      "junctionFromId": 57267939,
+      "junctionToId": 57267935,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 353.838
+    },
+    {
+      "junctionFromId": 57267939,
+      "junctionToId": 57219953,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 105.301
+    },
+    {
+      "junctionFromId": 57267939,
+      "junctionToId": 57267943,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 164.396
+    },
+    {
+      "junctionFromId": 57267943,
+      "junctionToId": 57277574,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 284.586
+    },
+    {
+      "junctionFromId": 57267943,
+      "junctionToId": 57236003,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 112.31
+    },
+    {
+      "junctionFromId": 57267943,
+      "junctionToId": 57267939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 164.396
+    },
+    {
+      "junctionFromId": 57267944,
+      "junctionToId": 57277572,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 284.765
+    },
+    {
+      "junctionFromId": 57267944,
+      "junctionToId": 57261378,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 105.462
+    },
+    {
+      "junctionFromId": 57267944,
+      "junctionToId": 57236003,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 113.085
+    },
+    {
+      "junctionFromId": 57268031,
+      "junctionToId": 57233283,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 92.86
+    },
+    {
+      "junctionFromId": 57268031,
+      "junctionToId": 57233293,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 185.144
+    },
+    {
+      "junctionFromId": 57268031,
+      "junctionToId": 57293653,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 101.697
+    },
+    {
+      "junctionFromId": 57269294,
+      "junctionToId": 57286927,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 91.18
+    },
+    {
+      "junctionFromId": 57269294,
+      "junctionToId": 57269297,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 79.685
+    },
+    {
+      "junctionFromId": 57269294,
+      "junctionToId": 57233322,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 92.404
+    },
+    {
+      "junctionFromId": 57269297,
+      "junctionToId": 57269294,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 79.685
+    },
+    {
+      "junctionFromId": 57270621,
+      "junctionToId": 57261379,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 107.011
+    },
+    {
+      "junctionFromId": 57270621,
+      "junctionToId": 57270624,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 283.929
+    },
+    {
+      "junctionFromId": 57270621,
+      "junctionToId": 57253155,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 267.371
+    },
+    {
+      "junctionFromId": 57270624,
+      "junctionToId": 57243080,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 115.756
+    },
+    {
+      "junctionFromId": 57270624,
+      "junctionToId": 57270621,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 283.929
+    },
+    {
+      "junctionFromId": 57270624,
+      "junctionToId": 57261378,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 106.387
+    },
+    {
+      "junctionFromId": 57272147,
+      "junctionToId": 57272148,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 44.368
+    },
+    {
+      "junctionFromId": 57272148,
+      "junctionToId": 57272184,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 75.623
+    },
+    {
+      "junctionFromId": 57272148,
+      "junctionToId": 57272147,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 44.368
+    },
+    {
+      "junctionFromId": 57272184,
+      "junctionToId": 57272148,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 75.623
+    },
+    {
+      "junctionFromId": 57277572,
+      "junctionToId": 57267944,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 284.765
+    },
+    {
+      "junctionFromId": 57277572,
+      "junctionToId": 57236007,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 113.865
+    },
+    {
+      "junctionFromId": 57277572,
+      "junctionToId": 57111082,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 116.422
+    },
+    {
+      "junctionFromId": 57277574,
+      "junctionToId": 57267943,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 284.586
+    },
+    {
+      "junctionFromId": 57277574,
+      "junctionToId": 57236007,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 112.872
+    },
+    {
+      "junctionFromId": 57277574,
+      "junctionToId": 57277577,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 113.093
+    },
+    {
+      "junctionFromId": 57277577,
+      "junctionToId": 57219953,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 156.223
+    },
+    {
+      "junctionFromId": 57277577,
+      "junctionToId": 57277584,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 238.168
+    },
+    {
+      "junctionFromId": 57277577,
+      "junctionToId": 57277574,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 113.093
+    },
+    {
+      "junctionFromId": 57277584,
+      "junctionToId": 57277577,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 238.168
+    },
+    {
+      "junctionFromId": 57278974,
+      "junctionToId": 57067252,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 99.632
+    },
+    {
+      "junctionFromId": 57278974,
+      "junctionToId": 57263622,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 728.595
+    },
+    {
+      "junctionFromId": 57278974,
+      "junctionToId": 57067250,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 102.104
+    },
+    {
+      "junctionFromId": 57279019,
+      "junctionToId": 57250299,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 13.46
+    },
+    {
+      "junctionFromId": 57279019,
+      "junctionToId": 57263622,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 502.275
+    },
+    {
+      "junctionFromId": 57279019,
+      "junctionToId": 57317981,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 216.855
+    },
+    {
+      "junctionFromId": 57286927,
+      "junctionToId": 57286939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 386.168
+    },
+    {
+      "junctionFromId": 57286927,
+      "junctionToId": 57286939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 384.999
+    },
+    {
+      "junctionFromId": 57286927,
+      "junctionToId": 57269294,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 91.18
+    },
+    {
+      "junctionFromId": 57286939,
+      "junctionToId": 57286927,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 386.168
+    },
+    {
+      "junctionFromId": 57286939,
+      "junctionToId": 57286927,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 384.999
+    },
+    {
+      "junctionFromId": 57286939,
+      "junctionToId": 57318141,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 97.534
+    },
+    {
+      "junctionFromId": 57290195,
+      "junctionToId": 57323307,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 6.784
+    },
+    {
+      "junctionFromId": 57290195,
+      "junctionToId": 57323302,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 312.713
+    },
+    {
+      "junctionFromId": 57290195,
+      "junctionToId": 57067252,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 111.116
+    },
+    {
+      "junctionFromId": 57292712,
+      "junctionToId": 3396157041,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 72.601
+    },
+    {
+      "junctionFromId": 57292889,
+      "junctionToId": 57223606,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 62.413
+    },
+    {
+      "junctionFromId": 57292889,
+      "junctionToId": 57267935,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 71.563
+    },
+    {
+      "junctionFromId": 57293653,
+      "junctionToId": 57233317,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 86.353
+    },
+    {
+      "junctionFromId": 57293653,
+      "junctionToId": 57233300,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 145.865
+    },
+    {
+      "junctionFromId": 57293653,
+      "junctionToId": 57268031,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 101.697
+    },
+    {
+      "junctionFromId": 57293660,
+      "junctionToId": 57233300,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 83.557
+    },
+    {
+      "junctionFromId": 57293921,
+      "junctionToId": 57233288,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 45.262
+    },
+    {
+      "junctionFromId": 57312849,
+      "junctionToId": 57162660,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 34.287
+    },
+    {
+      "junctionFromId": 57312849,
+      "junctionToId": 57162662,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 47.032
+    },
+    {
+      "junctionFromId": 57312857,
+      "junctionToId": 57162662,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 159.276
+    },
+    {
+      "junctionFromId": 57312857,
+      "junctionToId": 57279019,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 393.185
+    },
+    {
+      "junctionFromId": 57312876,
+      "junctionToId": 57312857,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 140.604
+    },
+    {
+      "junctionFromId": 57312876,
+      "junctionToId": 57213340,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 168.252
+    },
+    {
+      "junctionFromId": 57317981,
+      "junctionToId": 57111082,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 21.505
+    },
+    {
+      "junctionFromId": 57317981,
+      "junctionToId": 57250299,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 216.464
+    },
+    {
+      "junctionFromId": 57318115,
+      "junctionToId": 57318141,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 168.069
+    },
+    {
+      "junctionFromId": 57318115,
+      "junctionToId": 57111082,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 153.559
+    },
+    {
+      "junctionFromId": 57318115,
+      "junctionToId": 57335511,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 443.987
+    },
+    {
+      "junctionFromId": 57318141,
+      "junctionToId": 57318115,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 168.069
+    },
+    {
+      "junctionFromId": 57318141,
+      "junctionToId": 57243080,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 175.287
+    },
+    {
+      "junctionFromId": 57318141,
+      "junctionToId": 57286939,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 97.534
+    },
+    {
+      "junctionFromId": 57323302,
+      "junctionToId": 57290195,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 312.713
+    },
+    {
+      "junctionFromId": 57323307,
+      "junctionToId": 57290195,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 6.784
+    },
+    {
+      "junctionFromId": 57323307,
+      "junctionToId": 57323313,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 398.327
+    },
+    {
+      "junctionFromId": 57323313,
+      "junctionToId": 57263637,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 34.276
+    },
+    {
+      "junctionFromId": 57323313,
+      "junctionToId": 5611904542,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 45.504
+    },
+    {
+      "junctionFromId": 57335511,
+      "junctionToId": 57318115,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 443.987
+    },
+    {
+      "junctionFromId": 57345414,
+      "junctionToId": 57233311,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 62.775
+    },
+    {
+      "junctionFromId": 57356061,
+      "junctionToId": 57255226,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 27.415
+    },
+    {
+      "junctionFromId": 739033180,
+      "junctionToId": 5611902819,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 11.608
+    },
+    {
+      "junctionFromId": 739033180,
+      "junctionToId": 5611902817,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 19.497
+    },
+    {
+      "junctionFromId": 739033231,
+      "junctionToId": 739033232,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 10.123
+    },
+    {
+      "junctionFromId": 739033231,
+      "junctionToId": 5611904533,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 118.972
+    },
+    {
+      "junctionFromId": 739033232,
+      "junctionToId": 739033180,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 33.352
+    },
+    {
+      "junctionFromId": 739033241,
+      "junctionToId": 739033231,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 53.905
+    },
+    {
+      "junctionFromId": 2816973783,
+      "junctionToId": 57250357,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 72.028
+    },
+    {
+      "junctionFromId": 2816973789,
+      "junctionToId": 57224822,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 35.338
+    },
+    {
+      "junctionFromId": 2816973789,
+      "junctionToId": 57058967,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 138.226
+    },
+    {
+      "junctionFromId": 2816973789,
+      "junctionToId": 2816973783,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 47.964
+    },
+    {
+      "junctionFromId": 3396157041,
+      "junctionToId": 57292712,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 72.601
+    },
+    {
+      "junctionFromId": 3396157041,
+      "junctionToId": 57058967,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 275.157
+    },
+    {
+      "junctionFromId": 3396157078,
+      "junctionToId": 2666301416,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 122.019
+    },
+    {
+      "junctionFromId": 5611902817,
+      "junctionToId": 57263629,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 71.369
+    },
+    {
+      "junctionFromId": 5611902817,
+      "junctionToId": 5611902819,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 21.454
+    },
+    {
+      "junctionFromId": 5611902819,
+      "junctionToId": 5611904522,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 64.265
+    },
+    {
+      "junctionFromId": 5611902820,
+      "junctionToId": 57213339,
+      "isOneway": false,
+      "requiredTimeToFinishStreet": 304.57
+    },
+    {
+      "junctionFromId": 5611902820,
+      "junctionToId": 739033241,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 20.544
+    },
+    {
+      "junctionFromId": 5611904522,
+      "junctionToId": 739033241,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 13.078
+    },
+    {
+      "junctionFromId": 5611904522,
+      "junctionToId": 5611902820,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 21.538
+    },
+    {
+      "junctionFromId": 5611904533,
+      "junctionToId": 57263637,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 36.139
+    },
+    {
+      "junctionFromId": 5611904533,
+      "junctionToId": 5611904539,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 46.589
+    },
+    {
+      "junctionFromId": 5611904539,
+      "junctionToId": 57172010,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 171.349
+    },
+    {
+      "junctionFromId": 5611904542,
+      "junctionToId": 739033232,
+      "isOneway": true,
+      "requiredTimeToFinishStreet": 124.546
+    }
+  ]
+}

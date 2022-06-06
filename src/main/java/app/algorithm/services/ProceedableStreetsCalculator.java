@@ -8,7 +8,7 @@ import org.springframework.util.MultiValueMap;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JunctionToProceedableStreetsCreator {
+public class ProceedableStreetsCalculator {
     public static MultiValueMap<Long, Street> createJunctionToProceedableStreetsMap(List<Junction> junctionList, List<Street> streetList) {
         MultiValueMap<Long, Street> junctionToProceedableStreets = new LinkedMultiValueMap<>();
         junctionList.forEach(junction -> junctionToProceedableStreets.put(junction.getJunctionId(), new ArrayList<>()));

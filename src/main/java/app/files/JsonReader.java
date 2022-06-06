@@ -18,6 +18,7 @@ public class JsonReader {
         try {
             return gson.fromJson(new String(readAllBytes(get(filepath))), resultType);
         } catch (IOException e) {
+            e.printStackTrace();
             throw new FileReadingException();
         }
     }

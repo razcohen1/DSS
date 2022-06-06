@@ -11,32 +11,42 @@ import java.util.List;
 import java.util.Map;
 
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
-import static app.algorithm.services.JunctionToProceedableStreetsCreator.createJunctionToProceedableStreetsMap;
+import static app.algorithm.services.ProceedableStreetsCalculator.createJunctionToProceedableStreetsMap;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 public class InverseStreetFinderTest {
 
     @Test
-    public void createStreetToInverseStreetMapTest() {
+    public void createCorrectStreetToInverseStreetMapTest() {
         long junctionId1 = 1111;
         long junctionId2 = 2222;
-        long someJunctionId = 3333;
+        long junctionId3 = 3333;
         List<Junction> junctions = Arrays.asList(createJunction(junctionId1),
                 createJunction(junctionId2),
-                createJunction(someJunctionId));
+                createJunction(junctionId1));
         Street firstToSecondStreet = Street.builder().junctionFromId(junctionId1).junctionToId(junctionId2).build();
         Street secondToFirstStreet = Street.builder().junctionFromId(junctionId2).junctionToId(junctionId1).build();
+        Street thirdToFirstStreet = Street.builder().junctionFromId(junctionId3).junctionToId(junctionId1).build();
+        Street firstToThirdStreet = Street.builder().junctionFromId(junctionId1).junctionToId(junctionId3).build();
+        Street someOneWayStreet = Street.builder().junctionFromId(junctionId1).junctionToId(junctionId1).isOneway(true).build();
         List<Street> streets = new ArrayList<Street>() {{
             add(firstToSecondStreet);
-            add(Street.builder().junctionFromId(junctionId1).junctionToId(someJunctionId).isOneway(true).build());
+            add(someOneWayStreet);
             add(secondToFirstStreet);
-            add(Street.builder().junctionFromId(junctionId2).junctionToId(someJunctionId).build());
-            add(Street.builder().junctionFromId(someJunctionId).junctionToId(junctionId2).build());
+            add(thirdToFirstStreet);
+            add(firstToThirdStreet);
         }};
         MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(junctions, streets);
         Map<Street, Street> streetToInverseStreetMap = createStreetToInverseStreetMap(streets, junctionToProceedableStreetsMap);
+        assertThat(streetToInverseStreetMap.size(),is(4));
+        assertThat(streetToInverseStreetMap.get(firstToThirdStreet),is(thirdToFirstStreet));
+        assertThat(streetToInverseStreetMap.get(thirdToFirstStreet),is(firstToThirdStreet));
+        assertThat(streetToInverseStreetMap.get(firstToSecondStreet),is(secondToFirstStreet));
+        assertThat(streetToInverseStreetMap.get(secondToFirstStreet),is(firstToSecondStreet));
     }
 
-    private Junction createJunction(long junctionId) {
+    public static Junction createJunction(long junctionId) {
         return Junction.builder().junctionId(junctionId).build();
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.util.MultiValueMap;
 import javax.annotation.PostConstruct;
 
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
-import static app.algorithm.services.JunctionToProceedableStreetsCreator.createJunctionToProceedableStreetsMap;
+import static app.algorithm.services.ProceedableStreetsCalculator.createJunctionToProceedableStreetsMap;
 
 @Service
 public class BusinessLogicRunner {
