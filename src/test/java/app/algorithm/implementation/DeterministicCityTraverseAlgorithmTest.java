@@ -12,6 +12,7 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 
+import static app.algorithm.implementation.HillClimbingTraverseAlgorithmTest.assertPathsAreValid;
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
 import static app.algorithm.services.ProceedableStreetsCalculator.createJunctionToProceedableStreetsMap;
 import static org.hamcrest.core.Is.is;
@@ -46,14 +47,5 @@ public class DeterministicCityTraverseAlgorithmTest {
         assertThat(bestPaths.size(), is(problemInput.getMissionProperties().getAmountOfCars()));
         assertTrue(problemOutput.getTotalScore() > 0.5 * problemInput.getMissionProperties().getTimeAllowedForCarsItinerariesInSeconds() * problemInput.getMissionProperties().getAmountOfCars());
         assertPathsAreValid(bestPaths);
-    }
-
-    public static void assertPathsAreValid(List<Path> bestPaths) {
-        for (Path bestPath : bestPaths) {
-            List<Street> streets = bestPath.getStreets();
-            for (int j = 0; j < streets.size() - 1; j++) {
-                assertThat(streets.get(j).getJunctionToId(), is(streets.get(j + 1).getJunctionFromId()));
-            }
-        }
     }
 }
