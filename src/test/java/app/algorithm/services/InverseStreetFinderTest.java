@@ -22,9 +22,9 @@ public class InverseStreetFinderTest {
         long junctionId1 = 1111;
         long junctionId2 = 2222;
         long junctionId3 = 3333;
-        List<Junction> junctions = Arrays.asList(createJunction(junctionId1),
-                createJunction(junctionId2),
-                createJunction(junctionId1));
+        List<Junction> junctions = Arrays.asList(createJunctionWithId(junctionId1),
+                createJunctionWithId(junctionId2),
+                createJunctionWithId(junctionId1));
         Street firstToSecondStreet = Street.builder().junctionFromId(junctionId1).junctionToId(junctionId2).build();
         Street secondToFirstStreet = Street.builder().junctionFromId(junctionId2).junctionToId(junctionId1).build();
         Street thirdToFirstStreet = Street.builder().junctionFromId(junctionId3).junctionToId(junctionId1).build();
@@ -46,7 +46,7 @@ public class InverseStreetFinderTest {
         assertThat(streetToInverseStreetMap.get(secondToFirstStreet),is(firstToSecondStreet));
     }
 
-    public static Junction createJunction(long junctionId) {
+    public static Junction createJunctionWithId(long junctionId) {
         return Junction.builder().junctionId(junctionId).build();
     }
 }
