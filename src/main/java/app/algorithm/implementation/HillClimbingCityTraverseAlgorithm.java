@@ -6,6 +6,9 @@ import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,9 @@ import java.util.Map;
 import static app.algorithm.services.StreetsScorer.calculateTotalScore;
 import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Service
 @ConditionalOnProperty(value = "algorithm.implementation", havingValue = "hillclimbing")
 public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm {
@@ -24,6 +30,7 @@ public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm 
     private double maximumRunningTime;
     @Value(value = "${number.of.restarts:100}")
     private int numberOfRestarts;
+    @Builder.Default
     private HillClimbingMaximalPathFinder hillClimbingMaximalPathFinder = new HillClimbingMaximalPathFinder();
 
     @Override

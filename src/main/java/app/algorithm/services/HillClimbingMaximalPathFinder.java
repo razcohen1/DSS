@@ -4,8 +4,7 @@ package app.algorithm.services;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.Street;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
@@ -17,6 +16,9 @@ import static java.util.Optional.of;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class HillClimbingMaximalPathFinder {
     private double maximumRunningTimeInSeconds;
