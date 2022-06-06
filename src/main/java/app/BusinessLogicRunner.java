@@ -6,6 +6,7 @@ import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
 import app.visualization.ProblemOutputVisualizer;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,11 @@ import javax.annotation.PostConstruct;
 import static app.algorithm.services.InverseStreetFinder.createStreetToInverseStreetMap;
 import static app.algorithm.services.ProceedableStreetsCalculator.createJunctionToProceedableStreetsMap;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class BusinessLogicRunner {
     @Value(value = "${input.filepath}")
@@ -24,6 +30,7 @@ public class BusinessLogicRunner {
     private CityTraverseAlgorithm cityTraverseAlgorithm;
     @Autowired
     private ProblemOutputVisualizer visualizer;
+    @Builder.Default
     private JsonReader jsonReader = new JsonReader();
 
     @PostConstruct
