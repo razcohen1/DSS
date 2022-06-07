@@ -9,6 +9,7 @@ import app.model.Street;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
@@ -23,12 +24,11 @@ import static java.util.Optional.of;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ConditionalOnExpression(value = "'${algorithm.implementation}'.equals('hillclimbing') or '${algorithm.implementation}'.equals('advancedhillclimbing')")
 @Service
 public class HillClimbingMaximalPathFinder {
     private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
-    @Builder.Default
-    private boolean checkLimitedNumberOfStreetsAhead = false;
     @Autowired
     private NeighborGenerator neighborGenerator;
 

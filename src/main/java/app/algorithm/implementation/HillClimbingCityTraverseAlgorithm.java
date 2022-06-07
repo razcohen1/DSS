@@ -40,7 +40,7 @@ public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm 
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         problemInput.setZeroScoreStreets(zeroScoreStreets);
-        setUpMaximalPathFinder(problemInput);
+        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(calculateRunningTimePerCall(problemInput));
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
         Path bestPath;
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
@@ -50,11 +50,6 @@ public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm 
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
-    }
-
-    private void setUpMaximalPathFinder(ProblemInput problemInput) {
-        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(calculateRunningTimePerCall(problemInput));
-        hillClimbingMaximalPathFinder.setCheckLimitedNumberOfStreetsAhead(false);
     }
 
     private Path findBestPathOutOfAllRestarts(ProblemInput problemInput) {
