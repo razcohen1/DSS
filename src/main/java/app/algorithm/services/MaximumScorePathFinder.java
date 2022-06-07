@@ -29,9 +29,9 @@ public class MaximumScorePathFinder {
     private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
     @Builder.Default
-    private boolean checkLimitedNumberOfStreetsAhead = false;
+    private boolean checkLimitedNumberOfStreetsForward = false;
     @Value(value = "${number.of.street.forward.to.check:20}")
-    private int numberOfStreetsForward;
+    private int numberOfStreetsForwardToCheck;
 
     public Path find(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
@@ -63,7 +63,7 @@ public class MaximumScorePathFinder {
     }
 
     private boolean numberOfStreetsAheadNotExceeded(List<Street> currentPath) {
-        return !checkLimitedNumberOfStreetsAhead || currentPath.size() < numberOfStreetsForward;
+        return !checkLimitedNumberOfStreetsForward || currentPath.size() < numberOfStreetsForwardToCheck;
     }
 
     private boolean streetShouldBeTraveled(Street proceedableStreet, double score, double timePassed, double timeAllowed, Path bestPath, List<Street> alreadyTraveledStreets) {

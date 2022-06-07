@@ -33,7 +33,7 @@ public class AdvancedHillClimbingNeighborGenerator implements NeighborGenerator 
     @PostConstruct
     public void postConstruct() {
         maximumScorePathForwardFinder.setProbabilityToReplaceBest(1);
-        maximumScorePathForwardFinder.setCheckLimitedNumberOfStreetsAhead(true);
+        maximumScorePathForwardFinder.setCheckLimitedNumberOfStreetsForward(true);
         maximumScorePathForwardFinder.setMaximumRunningTimeInSeconds(Integer.MAX_VALUE);
     }
 
