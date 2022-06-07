@@ -2,22 +2,20 @@ package app.algorithm.services;
 
 
 import app.algorithm.services.neighbor.generator.NeighborGenerator;
-import app.model.MissionProperties;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.Street;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import static java.lang.System.currentTimeMillis;
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
 
 @Getter
 @Setter

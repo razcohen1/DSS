@@ -1,7 +1,6 @@
 package app.model;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Getter
 @Setter

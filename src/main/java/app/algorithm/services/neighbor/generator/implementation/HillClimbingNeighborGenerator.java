@@ -4,7 +4,10 @@ import app.algorithm.services.neighbor.generator.NeighborGenerator;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.Street;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
 package app.algorithm.implementation;
 
 import app.algorithm.services.HillClimbingMaximalPathFinder;
-import app.algorithm.services.MaximumScorePathFinder;
 import app.algorithm.services.neighbor.generator.implementation.HillClimbingNeighborGenerator;
 import app.files.JsonReader;
 import app.model.Path;
