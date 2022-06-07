@@ -1,6 +1,8 @@
 package app.algorithm.implementation;
 
 import app.algorithm.services.HillClimbingMaximalPathFinder;
+import app.algorithm.services.MaximumScorePathFinder;
+import app.algorithm.services.neighbor.generator.implementation.HillClimbingNeighborGenerator;
 import app.files.JsonReader;
 import app.model.Path;
 import app.model.ProblemInput;
@@ -27,12 +29,7 @@ public class HillClimbingTraverseAlgorithmTest {
     @Before
     public void setUp() {
         jsonReader = new JsonReader();
-        algorithm = HillClimbingCityTraverseAlgorithm.builder()
-                .maximumRunningTime(5)
-                .numberOfRestarts(100)
-                .hillClimbingMaximalPathFinder(HillClimbingMaximalPathFinder.builder()
-                        .build())
-                .build();
+        algorithm = createAlgorithmInstance();
         problemInput = jsonReader.read(inputJsonFilepath, ProblemInput.class);
         MultiValueMap<Long, Street> junctionToProceedableStreetsMap = createJunctionToProceedableStreetsMap(problemInput.getJunctionsList(), problemInput.getStreetsList());
         problemInput.setJunctionToProceedableStreets(junctionToProceedableStreetsMap);
@@ -55,5 +52,15 @@ public class HillClimbingTraverseAlgorithmTest {
                 assertThat(streets.get(j).getJunctionToId(), is(streets.get(j + 1).getJunctionFromId()));
             }
         }
+    }
+
+    private HillClimbingCityTraverseAlgorithm createAlgorithmInstance() {
+        return HillClimbingCityTraverseAlgorithm.builder()
+                .maximumRunningTime(5)
+                .numberOfRestarts(100)
+                .hillClimbingMaximalPathFinder(HillClimbingMaximalPathFinder.builder()
+                        .neighborGenerator(HillClimbingNeighborGenerator.builder().build())
+                        .build())
+                .build();
     }
 }

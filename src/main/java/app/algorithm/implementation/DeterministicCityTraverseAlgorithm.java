@@ -2,7 +2,6 @@ package app.algorithm.implementation;
 
 import app.algorithm.CityTraverseAlgorithm;
 import app.algorithm.services.MaximumScorePathFinder;
-import app.algorithm.services.MaximumScorePathFinderWithLengthLimit;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -30,7 +29,6 @@ import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm {
     @Autowired
     private MaximumScorePathFinder maximumScorePathFinder;
-//    private MaximumScorePathFinderWithLengthLimit maximumScorePathFinder;
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
 
@@ -41,8 +39,7 @@ public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm
         List<Street> zeroScoreStreets = new ArrayList<>();
         problemInput.setZeroScoreStreets(zeroScoreStreets);
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
-        maximumScorePathFinder.setProbabilityToReplaceBest(1);
-        maximumScorePathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        setUpMaximumScorePathFinder(amountOfCars);
         Path bestPath;
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
             bestPath = maximumScorePathFinder.find(problemInput);
@@ -51,5 +48,10 @@ public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private void setUpMaximumScorePathFinder(int amountOfCars) {
+        maximumScorePathFinder.setProbabilityToReplaceBest(1);
+        maximumScorePathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime / amountOfCars);
     }
 }

@@ -1,9 +1,7 @@
 package app.algorithm.implementation;
 
 import app.algorithm.CityTraverseAlgorithm;
-import app.algorithm.services.AdvancedHillClimbingMaximalPathFinder;
 import app.algorithm.services.HillClimbingMaximalPathFinder;
-import app.algorithm.services.MaximumScorePathFinderWithLengthLimit;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
@@ -32,7 +30,8 @@ public class AdvancedHillClimbingCityTraverseAlgorithm implements CityTraverseAl
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
     @Autowired
-    private AdvancedHillClimbingMaximalPathFinder hillClimbingMaximalPathFinder;
+    private HillClimbingMaximalPathFinder hillClimbingMaximalPathFinder;
+
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
@@ -40,7 +39,7 @@ public class AdvancedHillClimbingCityTraverseAlgorithm implements CityTraverseAl
         List<Street> zeroScoreStreets = new ArrayList<>();
         problemInput.setZeroScoreStreets(zeroScoreStreets);
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
-        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        setUpMaximalPathFinder(amountOfCars);
         Path bestPath;
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
             bestPath = hillClimbingMaximalPathFinder.find(problemInput);
@@ -49,5 +48,10 @@ public class AdvancedHillClimbingCityTraverseAlgorithm implements CityTraverseAl
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private void setUpMaximalPathFinder(int amountOfCars) {
+        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        hillClimbingMaximalPathFinder.setCheckLimitedNumberOfStreetsAhead(true);
     }
 }

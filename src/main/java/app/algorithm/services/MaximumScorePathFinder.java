@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static java.lang.System.currentTimeMillis;
+import static java.util.Collections.emptyList;
 
 @Getter
 @Setter
@@ -27,12 +29,16 @@ public class MaximumScorePathFinder {
     private double probabilityToReplaceBest;
     private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
+    @Builder.Default
+    private boolean checkLimitedNumberOfStreetsAhead = false;
+    @Value(value = "${number.of.street.forward.to.check:20}")
+    private int numberOfStreetsForward;
 
     public Path find(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
         MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableStreets();
-        Path bestPath = Path.builder().score(0).build();
+        Path bestPath = Path.builder().streets(emptyList()).score(0).build();
         find(getInitialJunctionId(problemInput), 0, getTimeAllowed(problemInput), 0, bestPath,
                 new ArrayList<>(), new ArrayList<>(), problemInput.getZeroScoreStreets(), junctionToProceedableStreets, streetToInverseStreet);
 
@@ -43,7 +49,7 @@ public class MaximumScorePathFinder {
                       List<Street> currentPath, List<Street> alreadyTraveledStreets, List<Street> zeroScoreStreets,
                       MultiValueMap<Long, Street> junctionToProceedableStreets, Map<Street, Street> streetToInverseStreet) {
         double newScore;
-        if (maximumRunningTimeNotExceeded())
+        if (maximumRunningTimeNotExceeded() && numberOfStreetsAheadNotExceeded(currentPath))
             for (Street proceedableStreet : junctionToProceedableStreets.get(currentJunction)) {
                 if (streetShouldBeTraveled(proceedableStreet, score, timePassed, timeAllowed, bestPath, alreadyTraveledStreets)) {
                     newScore = calculateNewScore(score, zeroScoreStreets, proceedableStreet);
@@ -55,6 +61,10 @@ public class MaximumScorePathFinder {
                 }
             }
         replaceBestPathIfBetter(currentPath, score, bestPath, timePassed);
+    }
+
+    private boolean numberOfStreetsAheadNotExceeded(List<Street> currentPath) {
+        return !checkLimitedNumberOfStreetsAhead || currentPath.size() < numberOfStreetsForward;
     }
 
     private boolean streetShouldBeTraveled(Street proceedableStreet, double score, double timePassed, double timeAllowed, Path bestPath, List<Street> alreadyTraveledStreets) {

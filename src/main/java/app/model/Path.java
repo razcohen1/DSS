@@ -38,6 +38,10 @@ public class Path {
         this.timePassed -= value;
     }
 
+    public Street getFirstStreet(){
+        return streets.get(0);
+    }
+
     public Street getLastAddedStreet(){
         return streets.get(streets.size()-1);
     }

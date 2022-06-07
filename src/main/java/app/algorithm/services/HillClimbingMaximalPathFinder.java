@@ -1,10 +1,14 @@
 package app.algorithm.services;
 
 
+import app.algorithm.services.neighbor.generator.NeighborGenerator;
+import app.model.MissionProperties;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.Street;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
@@ -23,11 +27,14 @@ import static java.util.Optional.of;
 public class HillClimbingMaximalPathFinder {
     private double maximumRunningTimeInSeconds;
     private long startTimeInMillis;
+    @Builder.Default
+    private boolean checkLimitedNumberOfStreetsAhead = false;
+    @Autowired
+    private NeighborGenerator neighborGenerator;
 
     public Path find(ProblemInput problemInput) {
         startTimeInMillis = currentTimeMillis();
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
-        MultiValueMap<Long, Street> junctionToProceedableStreets = problemInput.getJunctionToProceedableStreets();
         Path currentPath = Path.builder().score(0).streets(new ArrayList<>()).timePassed(0).build();
         Path bestPath = Path.builder().score(0).build();
         long currentJunction = getInitialJunctionId(problemInput);
@@ -35,7 +42,7 @@ public class HillClimbingMaximalPathFinder {
         List<Street> traveledAlready = new ArrayList<>();
         boolean doneSearching = false;
         while (shouldContinueSearching(doneSearching)) {
-            Optional<Street> street = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
+            Optional<Street> street = neighborGenerator.generate(currentJunction, traveledAlready, currentPath, problemInput);
             if (street.isPresent() && canFinishStreetInTime(street.get(), currentPath.getTimePassed(), getTimeAllowed(problemInput))) {
                 proceedToStreet(street.get(), currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
                 currentJunction = street.get().getJunctionToId();
@@ -115,26 +122,6 @@ public class HillClimbingMaximalPathFinder {
             zeroScoreStreets.add(streetToInverseStreet.get(street));
     }
 
-    private Optional<Street> generateRandomNeighbor(long currentJunction, List<Street> traveledAlready, MultiValueMap<Long, Street> junctionToProceedableStreets,
-                                                    List<Street> zeroScoreStreets) {
-        List<Street> streetsNotTraveled = new ArrayList<>(junctionToProceedableStreets.get(currentJunction));
-        streetsNotTraveled.removeAll(traveledAlready);
-        List<Street> streetsWorthScore = new ArrayList<>(streetsNotTraveled);
-        streetsWorthScore.removeAll(zeroScoreStreets);
-
-        if (!streetsWorthScore.isEmpty()) {
-            return of(chooseRandomElement(streetsWorthScore));
-        } else if (!streetsNotTraveled.isEmpty()) {
-            return of(chooseRandomElement(streetsNotTraveled));
-        } else {
-            return empty();
-        }
-    }
-
-    private Street chooseRandomElement(List<Street> streets) {
-        return streets.get(new Random().nextInt(streets.size()));
-    }
-
     private boolean maximumRunningTimeNotExceeded() {
         return getTimePassedInSeconds() < maximumRunningTimeInSeconds;
     }
@@ -142,5 +129,4 @@ public class HillClimbingMaximalPathFinder {
     private double getTimePassedInSeconds() {
         return (double) (currentTimeMillis() - startTimeInMillis) / 1000;
     }
-
 }

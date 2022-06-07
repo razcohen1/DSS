@@ -9,6 +9,7 @@ import app.model.Street;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
@@ -30,8 +31,8 @@ public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm 
     private double maximumRunningTime;
     @Value(value = "${number.of.restarts:100}")
     private int numberOfRestarts;
-    @Builder.Default
-    private HillClimbingMaximalPathFinder hillClimbingMaximalPathFinder = new HillClimbingMaximalPathFinder();
+    @Autowired
+    private HillClimbingMaximalPathFinder hillClimbingMaximalPathFinder;
 
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
@@ -39,7 +40,7 @@ public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm 
         List<Path> bestPaths = new ArrayList<>();
         List<Street> zeroScoreStreets = new ArrayList<>();
         problemInput.setZeroScoreStreets(zeroScoreStreets);
-        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(calculateRunningTimePerCall(problemInput));
+        setUpMaximalPathFinder(problemInput);
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
         Path bestPath;
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
@@ -49,6 +50,11 @@ public class HillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm 
         }
 
         return ProblemOutput.builder().bestPaths(bestPaths).totalScore(calculateTotalScore(bestPaths)).build();
+    }
+
+    private void setUpMaximalPathFinder(ProblemInput problemInput) {
+        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(calculateRunningTimePerCall(problemInput));
+        hillClimbingMaximalPathFinder.setCheckLimitedNumberOfStreetsAhead(false);
     }
 
     private Path findBestPathOutOfAllRestarts(ProblemInput problemInput) {
