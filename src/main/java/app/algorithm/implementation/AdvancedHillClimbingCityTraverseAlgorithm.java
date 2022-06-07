@@ -1,13 +1,16 @@
 package app.algorithm.implementation;
 
 import app.algorithm.CityTraverseAlgorithm;
-import app.algorithm.services.MaximumScorePathFinder;
+import app.algorithm.services.AdvancedHillClimbingMaximalPathFinder;
+import app.algorithm.services.HillClimbingMaximalPathFinder;
 import app.algorithm.services.MaximumScorePathFinderWithLengthLimit;
 import app.model.Path;
 import app.model.ProblemInput;
 import app.model.ProblemOutput;
 import app.model.Street;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -20,20 +23,16 @@ import java.util.Map;
 import static app.algorithm.services.StreetsScorer.calculateTotalScore;
 import static app.algorithm.services.StreetsScorer.getZeroScoreStreetsFromPath;
 
-@Getter
-@Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Service
-@ConditionalOnProperty(value = "algorithm.implementation", havingValue = "deterministic", matchIfMissing = true)
-public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm {
-    @Autowired
-    private MaximumScorePathFinder maximumScorePathFinder;
-//    private MaximumScorePathFinderWithLengthLimit maximumScorePathFinder;
+@ConditionalOnProperty(value = "algorithm.implementation", havingValue = "advancedhillclimbing")
+public class AdvancedHillClimbingCityTraverseAlgorithm implements CityTraverseAlgorithm {
     @Value(value = "${maximum.running.time.wanted.in.seconds:30}")
     private double maximumRunningTime;
-
+    @Autowired
+    private AdvancedHillClimbingMaximalPathFinder hillClimbingMaximalPathFinder;
     @Override
     public ProblemOutput run(ProblemInput problemInput) {
         Map<Street, Street> streetToInverseStreet = problemInput.getStreetToInverseStreet();
@@ -41,11 +40,10 @@ public class DeterministicCityTraverseAlgorithm implements CityTraverseAlgorithm
         List<Street> zeroScoreStreets = new ArrayList<>();
         problemInput.setZeroScoreStreets(zeroScoreStreets);
         int amountOfCars = problemInput.getMissionProperties().getAmountOfCars();
-        maximumScorePathFinder.setProbabilityToReplaceBest(1);
-        maximumScorePathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
+        hillClimbingMaximalPathFinder.setMaximumRunningTimeInSeconds(maximumRunningTime/amountOfCars);
         Path bestPath;
         for (int carIndex = 0; carIndex < amountOfCars; carIndex++) {
-            bestPath = maximumScorePathFinder.find(problemInput);
+            bestPath = hillClimbingMaximalPathFinder.find(problemInput);
             bestPaths.add(bestPath);
             zeroScoreStreets.addAll(getZeroScoreStreetsFromPath(bestPath, streetToInverseStreet));
         }
