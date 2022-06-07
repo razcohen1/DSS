@@ -30,7 +30,7 @@ public class MaximumScorePathFinder {
     private long startTimeInMillis;
     @Builder.Default
     private boolean checkLimitedNumberOfStreetsForward = false;
-    @Value(value = "${number.of.street.forward.to.check:20}")
+    @Value(value = "${number.of.streets.forward.to.check:20}")
     private int numberOfStreetsForwardToCheck;
 
     public Path find(ProblemInput problemInput) {
