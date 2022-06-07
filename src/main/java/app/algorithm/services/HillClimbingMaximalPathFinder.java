@@ -36,8 +36,7 @@ public class HillClimbingMaximalPathFinder {
         boolean doneSearching = false;
         while (shouldContinueSearching(doneSearching)) {
             Optional<Street> street = generateRandomNeighbor(currentJunction, traveledAlready, junctionToProceedableStreets, zeroScoreStreets);
-            if (street.isPresent() && canFinishStreetInTime(street.get(), currentPath.getTimePassed(), getTimeAllowed(problemInput))
-                    && currentPath.getScore() + (getTimeAllowed(problemInput) - currentPath.getTimePassed()) > bestPath.getScore()+100) {
+            if (street.isPresent() && canFinishStreetInTime(street.get(), currentPath.getTimePassed(), getTimeAllowed(problemInput))) {
                 proceedToStreet(street.get(), currentPath, zeroScoreStreets, traveledAlready, streetToInverseStreet);
                 currentJunction = street.get().getJunctionToId();
             } else if (!currentPath.isEmpty()) {
